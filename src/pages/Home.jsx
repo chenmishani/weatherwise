@@ -1,27 +1,33 @@
 import { useState, useEffect, useRef } from 'react';
 import SearchBar from '../components/SearchBar';
 import SearchResults from '../components/SearchResults';
-import SelectedCityDisplay from '../components/SelectedCityDisplay';
+import CurrentWeather from '../components/CurrentWeather';
 import { useDebounce } from '../hooks/useDebounce';
 import { searchCities } from '../services/geocodingService';
+import { getWeatherByCoordinates } from '../services/weatherService';
 
 function Home() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [selectedCity, setSelectedCity] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [searchIsLoading, setSearchIsLoading] = useState(false);
+  const [searchError, setSearchError] = useState(null);
+
+  const [weatherData, setWeatherData] = useState(null);
+  const [weatherIsLoading, setWeatherIsLoading] = useState(false);
+  const [weatherError, setWeatherError] = useState(null);
 
   const debouncedQuery = useDebounce(query, 300);
   const lastFetchedQueryRef = useRef('');
 
+  // Search effect
   useEffect(() => {
     const trimmed = debouncedQuery.trim();
 
     if (!trimmed) {
       setResults([]);
-      setError(null);
-      setIsLoading(false);
+      setSearchError(null);
+      setSearchIsLoading(false);
       lastFetchedQueryRef.current = '';
       return;
     }
@@ -31,22 +37,22 @@ function Home() {
     }
 
     const controller = new AbortController();
-    setIsLoading(true);
-    setError(null);
+    setSearchIsLoading(true);
+    setSearchError(null);
 
     searchCities(trimmed, { signal: controller.signal })
       .then((cities) => {
         setResults(cities);
         lastFetchedQueryRef.current = trimmed;
-        setIsLoading(false);
+        setSearchIsLoading(false);
       })
       .catch((err) => {
         if (err.name === 'AbortError') {
           return;
         }
-        setError(err.message || 'Location search failed');
+        setSearchError(err.message || 'Location search failed');
         setResults([]);
-        setIsLoading(false);
+        setSearchIsLoading(false);
         lastFetchedQueryRef.current = '';
       });
 
@@ -55,11 +61,49 @@ function Home() {
     };
   }, [debouncedQuery]);
 
+  // Weather effect for selected city
+  useEffect(() => {
+    if (!selectedCity) {
+      setWeatherData(null);
+      setWeatherError(null);
+      setWeatherIsLoading(false);
+      return;
+    }
+
+    const controller = new AbortController();
+    setWeatherIsLoading(true);
+    setWeatherError(null);
+    setWeatherData(null);
+
+    getWeatherByCoordinates(
+      selectedCity.latitude,
+      selectedCity.longitude,
+      selectedCity.timezone,
+      { signal: controller.signal }
+    )
+      .then((data) => {
+        setWeatherData(data);
+        setWeatherIsLoading(false);
+      })
+      .catch((err) => {
+        if (err.name === 'AbortError') {
+          return;
+        }
+        setWeatherError(err.message || 'Failed to fetch weather data.');
+        setWeatherData(null);
+        setWeatherIsLoading(false);
+      });
+
+    return () => {
+      controller.abort();
+    };
+  }, [selectedCity]);
+
   const handleQueryChange = (newQuery) => {
     setQuery(newQuery);
     if (!newQuery.trim()) {
       setResults([]);
-      setError(null);
+      setSearchError(null);
       lastFetchedQueryRef.current = '';
     }
   };
@@ -67,7 +111,7 @@ function Home() {
   const handleClear = () => {
     setQuery('');
     setResults([]);
-    setError(null);
+    setSearchError(null);
     lastFetchedQueryRef.current = '';
   };
 
@@ -75,7 +119,7 @@ function Home() {
     setSelectedCity(city);
     setQuery('');
     setResults([]);
-    setError(null);
+    setSearchError(null);
     lastFetchedQueryRef.current = '';
   };
 
@@ -83,7 +127,7 @@ function Home() {
     <div className="page-container">
       <h1>WeatherWise Dashboard</h1>
       <p className="welcome-text">
-        Search for a city below to select a location.
+        Search for a city below to view current weather.
       </p>
 
       <section className="search-section">
@@ -91,17 +135,22 @@ function Home() {
           query={query}
           onChange={handleQueryChange}
           onClear={handleClear}
-          isLoading={isLoading}
+          isLoading={searchIsLoading}
         />
         <SearchResults
           results={results}
           onSelect={handleSelectCity}
-          error={error}
+          error={searchError}
           query={debouncedQuery.trim()}
         />
       </section>
 
-      <SelectedCityDisplay city={selectedCity} />
+      <CurrentWeather
+        city={selectedCity}
+        weather={weatherData}
+        isLoading={weatherIsLoading}
+        error={weatherError}
+      />
     </div>
   );
 }

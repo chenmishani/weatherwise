@@ -10,7 +10,8 @@ import { FORECAST_API_BASE } from './apiConfig';
 export async function getWeatherByCoordinates(
   latitude,
   longitude,
-  timezone = 'auto'
+  timezone = 'auto',
+  { signal } = {}
 ) {
   const numLat = Number(latitude);
   const numLon = Number(longitude);
@@ -26,8 +27,11 @@ export async function getWeatherByCoordinates(
 
   let response;
   try {
-    response = await fetch(url);
+    response = await fetch(url, { signal });
   } catch (error) {
+    if (error.name === 'AbortError') {
+      throw error;
+    }
     throw new Error(`Weather fetch failed: Network error (${error.message})`);
   }
 

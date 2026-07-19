@@ -31,10 +31,10 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Create `SearchBar.jsx`, `SearchResults.jsx`, `SearchResultItem.jsx`, and `useDebounce.js` integrating Open-Meteo geocoding search.
   - **Category**: City search
 
-- [ ] **TASK-06**: Build city search bar component
-  - **Commit Message**: `feat: build city search bar component with auto-suggest menu [TASK-06]`
-  - **Scope**: Create `SearchBar.jsx` component with debounced search input and live query handling.
-  - **Category**: City search
+- [x] **TASK-06**: Fetch and display current weather for selected city
+  - **Commit Message**: `feat: fetch and display current weather for selected city [TASK-06]`
+  - **Scope**: Create `CurrentWeather.jsx` component and `weatherCodes.js` utility; integrate `getWeatherByCoordinates` with state separation and AbortController request protection.
+  - **Category**: Current weather
 
 - [ ] **TASK-07**: Implement multiple search results selection view
   - **Commit Message**: `feat: implement multiple search results selection view [TASK-07]`
@@ -102,7 +102,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 | **TASK-03** | React Router & layout skeleton      | Completed | Pending commit     | FR-08, NFR-02               |
 | **TASK-04** | Open-Meteo API integration          | Completed | Pending commit     | FR-01, FR-03, FR-04, NFR-01 |
 | **TASK-05** | City search & selection flow        | Completed | Pending commit     | FR-01, FR-02                |
-| **TASK-06** | City search bar component           | Pending   | Pending commit     | FR-01, NFR-03               |
+| **TASK-06** | Fetch & display current weather     | Completed | Pending commit     | FR-03, NFR-01, NFR-06       |
 | **TASK-07** | Search results selection view       | Pending   | Pending commit     | FR-02                       |
 | **TASK-08** | Current weather card component      | Pending   | Pending commit     | FR-03, NFR-02               |
 | **TASK-09** | 7-day forecast cards component      | Pending   | Pending commit     | FR-04, NFR-02               |

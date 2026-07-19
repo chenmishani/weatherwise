@@ -276,16 +276,22 @@ body {
   font-size: 0.9rem;
 }
 
-.selected-city-card {
+/* Current Weather Styles */
+.current-weather-card {
   margin-top: 1.5rem;
   padding: 1.5rem;
   background-color: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 12px;
   max-width: 600px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-.selected-city-tag {
+.current-weather-header {
+  margin-bottom: 1rem;
+}
+
+.location-badge {
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -293,16 +299,67 @@ body {
   letter-spacing: 0.05em;
 }
 
-.selected-city-card h2 {
-  font-size: 1.3rem;
-  margin: 0.25rem 0 0.5rem 0;
+.current-weather-header h2 {
+  font-size: 1.4rem;
+  margin-top: 0.25rem;
   color: var(--text-color);
 }
 
-.no-weather-notice {
-  font-size: 0.9rem;
+.weather-loading-state,
+.weather-error-state {
+  padding: 1rem 0;
   color: #718096;
-  font-style: italic;
+  font-size: 0.95rem;
+}
+
+.weather-error-state {
+  color: #c53030;
+}
+
+.weather-main-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.current-temp {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  line-height: 1;
+}
+
+.condition-text {
+  font-size: 1.1rem;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.weather-metrics-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metric-item dt {
+  font-size: 0.85rem;
+  color: #718096;
+  font-weight: 500;
+}
+
+.metric-item dd {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
 }
 
 @media (max-width: 600px) {
@@ -313,5 +370,9 @@ body {
 
   .main-content {
     padding: 1rem;
+  }
+
+  .weather-metrics-list {
+    grid-template-columns: 1fr;
   }
 }
