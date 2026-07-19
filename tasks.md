@@ -26,10 +26,10 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Build `src/services/weatherService.js` and `src/services/geocodingService.js` fetching functions with parameter formatting and response transformations.
   - **Category**: Weather service
 
-- [ ] **TASK-05**: Implement LocalStorage helper utilities
-  - **Commit Message**: `feat: implement LocalStorage helper utilities for state persistence [TASK-05]`
-  - **Scope**: Build `src/services/storageService.js` with safe getters/setters for favorites, recent searches, and unit preferences with JSON error wrapping.
-  - **Category**: LocalStorage / Persistence
+- [x] **TASK-05**: Implement city search and selection flow
+  - **Commit Message**: `feat: implement city search and selection flow [TASK-05]`
+  - **Scope**: Create `SearchBar.jsx`, `SearchResults.jsx`, `SearchResultItem.jsx`, and `useDebounce.js` integrating Open-Meteo geocoding search.
+  - **Category**: City search
 
 - [ ] **TASK-06**: Build city search bar component
   - **Commit Message**: `feat: build city search bar component with auto-suggest menu [TASK-06]`
@@ -101,7 +101,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 | **TASK-02** | Initialize React Vite project       | Completed | Pending commit     | N/A (Foundation)            |
 | **TASK-03** | React Router & layout skeleton      | Completed | Pending commit     | FR-08, NFR-02               |
 | **TASK-04** | Open-Meteo API integration          | Completed | Pending commit     | FR-01, FR-03, FR-04, NFR-01 |
-| **TASK-05** | LocalStorage helper utilities       | Pending   | Pending commit     | NFR-05                      |
+| **TASK-05** | City search & selection flow        | Completed | Pending commit     | FR-01, FR-02                |
 | **TASK-06** | City search bar component           | Pending   | Pending commit     | FR-01, NFR-03               |
 | **TASK-07** | Search results selection view       | Pending   | Pending commit     | FR-02                       |
 | **TASK-08** | Current weather card component      | Pending   | Pending commit     | FR-03, NFR-02               |

@@ -5,7 +5,7 @@ import { GEOCODING_API_BASE } from './apiConfig';
  * @param {string} query - City name or partial name to search for.
  * @returns {Promise<Array<{id: string|number, name: string, country: string, countryCode: string, admin1: string, latitude: number, longitude: number, timezone: string}>>}
  */
-export async function searchCities(query) {
+export async function searchCities(query, { signal } = {}) {
   if (typeof query !== 'string') {
     return [];
   }
@@ -19,8 +19,11 @@ export async function searchCities(query) {
 
   let response;
   try {
-    response = await fetch(url);
+    response = await fetch(url, { signal });
   } catch (error) {
+    if (error.name === 'AbortError') {
+      throw error;
+    }
     throw new Error(`Location search failed: Network error (${error.message})`);
   }
 
