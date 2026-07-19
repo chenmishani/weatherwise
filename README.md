@@ -2,7 +2,10 @@
 
 A modern, lightweight React web application for real-time weather metrics, location search, and 7-day weather forecasts across the globe. Built with a privacy-first, client-side persistence architecture requiring no user accounts, backend servers, or API keys.
 
-> ⚠️ **Project Status**: Complete application documentation, architecture overview, and academic project submission notes finalized (`TASK-16`).
+- **Repository**: [https://github.com/chenmishani/weatherwise](https://github.com/chenmishani/weatherwise)
+- **Live Demo**: [https://chenmishani.github.io/weatherwise/](https://chenmishani.github.io/weatherwise/)
+
+> 🚀 **Deployment**: Automatic GitHub Pages deployment configured via GitHub Actions.
 
 ---
 
@@ -217,6 +220,16 @@ On every `push` and `pull_request` to `main` and `master` branches, the runner e
 3. `npm run lint` (ESLint static code inspection)
 4. `npm run test:run` (Automated Vitest test suite)
 5. `npm run build` (Production bundle build compilation)
+
+---
+
+## 🚀 Deployment
+
+Automatic deployment to **GitHub Pages** is configured in `.github/workflows/deploy-pages.yml`.
+
+- **Live URL**: [https://chenmishani.github.io/weatherwise/](https://chenmishani.github.io/weatherwise/)
+- **Trigger**: Pushes to `main` branch or manual `workflow_dispatch`.
+- **Process**: Builds the production bundle with base path `/weatherwise/` and deploys static assets using official GitHub Actions (`actions/configure-pages`, `actions/upload-pages-artifact`, `actions/deploy-pages`).
 
 ---
 
