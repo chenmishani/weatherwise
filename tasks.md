@@ -16,7 +16,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Setup Vite React project, package dependencies, ESLint, Prettier, folder layout (`src/components`, `src/services`, `src/context`, `src/hooks`, `src/pages`, `src/styles`).
   - **Category**: Project initialization
 
-- [ ] **TASK-03**: Setup React Router navigation and layout
+- [x] **TASK-03**: Setup React Router navigation and layout
   - **Commit Message**: `feat: setup React Router navigation and app layout skeleton [TASK-03]`
   - **Scope**: Configure React Router v6 routes (`/`, `/favorites`, `*`), Main Layout, Header, Navigation links, and Footer.
   - **Category**: Routing
@@ -99,7 +99,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 | ----------- | ----------------------------------- | --------- | ------------------ | --------------------------- |
 | **TASK-01** | Define product requirements & docs  | Completed | Pending commit     | N/A (Project Planning)      |
 | **TASK-02** | Initialize React Vite project       | Completed | Pending commit     | N/A (Foundation)            |
-| **TASK-03** | React Router & layout skeleton      | Pending   | Pending commit     | FR-08, NFR-02               |
+| **TASK-03** | React Router & layout skeleton      | Completed | Pending commit     | FR-08, NFR-02               |
 | **TASK-04** | Open-Meteo API integration          | Pending   | Pending commit     | FR-01, FR-03, FR-04, NFR-01 |
 | **TASK-05** | LocalStorage helper utilities       | Pending   | Pending commit     | NFR-05                      |
 | **TASK-06** | City search bar component           | Pending   | Pending commit     | FR-01, NFR-03               |
