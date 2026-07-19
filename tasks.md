@@ -71,10 +71,10 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Extract `formatLocationLabel` utility and custom hooks (`useCitySearch`, `useCityWeather`), centralize LocalStorage keys and custom event constants, and optimize CSS cascade.
   - **Category**: Refactoring / Architecture
 
-- [ ] **TASK-14**: Implement responsive CSS layout and visual polish
-  - **Commit Message**: `feat: implement responsive CSS layout, weather-themed color system, and visual polish [TASK-14]`
-  - **Scope**: Refine responsive flex/grid layouts, CSS custom properties, weather-themed color system, smooth transitions, and glassmorphism styling across all viewports.
-  - **Category**: Responsive styling
+- [x] **TASK-14**: Add automated test suite for core application logic
+  - **Commit Message**: `test: add automated test suite for core application logic [TASK-14]`
+  - **Scope**: Configure Vitest and React Testing Library; create test suites for utilities, storage service, and components including SearchBar keyboard interactions.
+  - **Category**: Testing / Automated QA
 
 - [ ] **TASK-15**: Add unit and integration tests
   - **Commit Message**: `test: add unit and integration tests for services and components [TASK-15]`
@@ -110,7 +110,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 | **TASK-11** | UI loading skeletons & error states | Completed | Pending commit     | FR-09, NFR-06               |
 | **TASK-12** | Responsive CSS styling & polish     | Completed | Pending commit     | NFR-02, NFR-03, NFR-04      |
 | **TASK-13** | Code cleanup & architecture pass    | Completed | Pending commit     | NFR-05, NFR-06              |
-| **TASK-14** | Responsive CSS styling & polish     | Pending   | Pending commit     | NFR-02, NFR-03, NFR-04      |
+| **TASK-14** | Automated test suite (Vitest + RTL) | Completed | Pending commit     | NFR-05, DoD                 |
 | **TASK-15** | Vitest unit and component tests     | Pending   | Pending commit     | DoD Requirement             |
 | **TASK-16** | GitHub Actions CI pipeline          | Pending   | Pending commit     | DoD Requirement             |
 | **TASK-17** | Final README & documentation review | Pending   | Pending commit     | DoD Requirement             |
