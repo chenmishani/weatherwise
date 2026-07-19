@@ -21,7 +21,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Configure React Router v6 routes (`/`, `/favorites`, `*`), Main Layout, Header, Navigation links, and Footer.
   - **Category**: Routing
 
-- [ ] **TASK-04**: Implement Open-Meteo API integration services
+- [x] **TASK-04**: Implement Open-Meteo API integration services
   - **Commit Message**: `feat: implement Open-Meteo API integration services [TASK-04]`
   - **Scope**: Build `src/services/weatherService.js` and `src/services/geocodingService.js` fetching functions with parameter formatting and response transformations.
   - **Category**: Weather service
@@ -100,7 +100,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 | **TASK-01** | Define product requirements & docs  | Completed | Pending commit     | N/A (Project Planning)      |
 | **TASK-02** | Initialize React Vite project       | Completed | Pending commit     | N/A (Foundation)            |
 | **TASK-03** | React Router & layout skeleton      | Completed | Pending commit     | FR-08, NFR-02               |
-| **TASK-04** | Open-Meteo API integration          | Pending   | Pending commit     | FR-01, FR-03, FR-04, NFR-01 |
+| **TASK-04** | Open-Meteo API integration          | Completed | Pending commit     | FR-01, FR-03, FR-04, NFR-01 |
 | **TASK-05** | LocalStorage helper utilities       | Pending   | Pending commit     | NFR-05                      |
 | **TASK-06** | City search bar component           | Pending   | Pending commit     | FR-01, NFR-03               |
 | **TASK-07** | Search results selection view       | Pending   | Pending commit     | FR-02                       |

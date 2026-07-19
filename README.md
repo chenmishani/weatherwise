@@ -8,7 +8,7 @@
 
 **WeatherWise** is a lightweight single-page web application that provides real-time weather metrics and a 7-day forecast for locations around the globe. Designed with a privacy-first approach, it relies entirely on client-side storage (`LocalStorage`) for user preferences such as favorite cities, search history, and temperature unit settings—requiring no user accounts, backend server, or tracking.
 
-> ⚠️ **Project Status**: React Router navigation and shared application layout initialized (`TASK-03`). Service implementation begins in TASK-04.
+> ⚠️ **Project Status**: Open-Meteo geocoding and weather forecast service layer initialized (`TASK-04`). LocalStorage helper utilities implementation begins in TASK-05.
 
 ---
 
