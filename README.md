@@ -5,7 +5,7 @@ A modern, lightweight React web application for real-time weather metrics, locat
 - **Repository**: [https://github.com/chenmishani/weatherwise](https://github.com/chenmishani/weatherwise)
 - **Live Demo**: [https://chenmishani.github.io/weatherwise/](https://chenmishani.github.io/weatherwise/)
 
-> 🚀 **Deployment**: Automatic GitHub Pages deployment configured via GitHub Actions.
+> ✅ **Project Status**: All project requirements, automated test suite, GitHub Actions CI, GitHub Pages deployment, and final submission audit completed (`TASK-17`).
 
 ---
 
