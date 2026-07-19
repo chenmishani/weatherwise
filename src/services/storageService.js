@@ -1,5 +1,6 @@
 const RECENT_SEARCHES_KEY = 'weatherwise_recent_searches';
 const FAVORITE_CITIES_KEY = 'weatherwise_favorite_cities';
+const TEMPERATURE_UNIT_KEY = 'weatherwise_temperature_unit';
 const MAX_RECENT_ITEMS = 5;
 
 /**
@@ -192,4 +193,35 @@ export function isFavoriteCity(cityId) {
   }
   const current = getFavoriteCities();
   return current.some((item) => String(item.id) === String(cityId));
+}
+
+/**
+ * Safely reads preferred temperature unit from LocalStorage.
+ * @returns {'celsius'|'fahrenheit'} Preferred unit ('celsius' by default).
+ */
+export function getTemperatureUnit() {
+  try {
+    const stored = window.localStorage.getItem(TEMPERATURE_UNIT_KEY);
+    if (stored === 'fahrenheit') {
+      return 'fahrenheit';
+    }
+    return 'celsius';
+  } catch {
+    return 'celsius';
+  }
+}
+
+/**
+ * Saves preferred temperature unit to LocalStorage.
+ * @param {'celsius'|'fahrenheit'} unit - Preferred unit.
+ * @returns {'celsius'|'fahrenheit'} Saved unit.
+ */
+export function saveTemperatureUnit(unit) {
+  const validUnit = unit === 'fahrenheit' ? 'fahrenheit' : 'celsius';
+  try {
+    window.localStorage.setItem(TEMPERATURE_UNIT_KEY, validUnit);
+  } catch {
+    // Fail gracefully
+  }
+  return validUnit;
 }

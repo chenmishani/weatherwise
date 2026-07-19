@@ -5,6 +5,7 @@ import SearchResults from '../components/SearchResults';
 import RecentSearches from '../components/RecentSearches';
 import CurrentWeather from '../components/CurrentWeather';
 import Forecast from '../components/Forecast';
+import TemperatureUnitToggle from '../components/TemperatureUnitToggle';
 import { useDebounce } from '../hooks/useDebounce';
 import { searchCities } from '../services/geocodingService';
 import { getWeatherByCoordinates } from '../services/weatherService';
@@ -15,6 +16,8 @@ import {
   isFavoriteCity,
   saveFavoriteCity,
   removeFavoriteCity,
+  getTemperatureUnit,
+  saveTemperatureUnit,
 } from '../services/storageService';
 
 function Home() {
@@ -28,6 +31,8 @@ function Home() {
 
   const [recentSearches, setRecentSearches] = useState([]);
   const [isFav, setIsFav] = useState(false);
+
+  const [unit, setUnit] = useState(() => getTemperatureUnit());
 
   const [weatherData, setWeatherData] = useState(null);
   const [weatherIsLoading, setWeatherIsLoading] = useState(false);
@@ -191,12 +196,22 @@ function Home() {
     }
   };
 
+  const handleUnitChange = (newUnit) => {
+    setUnit(newUnit);
+    saveTemperatureUnit(newUnit);
+  };
+
   return (
     <div className="page-container">
-      <h1>WeatherWise Dashboard</h1>
-      <p className="welcome-text">
-        Search for a city below to view current weather.
-      </p>
+      <header className="dashboard-top-bar">
+        <div>
+          <h1>WeatherWise Dashboard</h1>
+          <p className="welcome-text">
+            Search for a city below to view current weather.
+          </p>
+        </div>
+        <TemperatureUnitToggle unit={unit} onUnitChange={handleUnitChange} />
+      </header>
 
       <section className="search-section">
         <SearchBar
@@ -226,10 +241,11 @@ function Home() {
         error={weatherError}
         isFavorite={isFav}
         onToggleFavorite={handleToggleFavorite}
+        unit={unit}
       />
       <Forecast
         daily={weatherData?.daily}
-        unit={weatherData?.units?.temperature || '°C'}
+        unit={unit}
         isLoading={weatherIsLoading}
         error={weatherError}
       />

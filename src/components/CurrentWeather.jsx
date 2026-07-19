@@ -1,4 +1,5 @@
 import { getWeatherConditionText } from '../utils/weatherCodes';
+import { formatTemperature } from '../utils/temperature';
 
 function CurrentWeather({
   city,
@@ -7,6 +8,7 @@ function CurrentWeather({
   error,
   isFavorite,
   onToggleFavorite,
+  unit = 'celsius',
 }) {
   if (!city) {
     return null;
@@ -15,6 +17,13 @@ function CurrentWeather({
   const locationName = [city.name, city.admin1, city.country]
     .filter(Boolean)
     .join(', ');
+
+  const currentTempFormatted = weather
+    ? formatTemperature(weather.current.temperature, unit)
+    : '';
+  const feelsLikeFormatted = weather
+    ? formatTemperature(weather.current.apparentTemperature, unit)
+    : '';
 
   return (
     <section className="current-weather-card" aria-label="Current Weather">
@@ -56,9 +65,7 @@ function CurrentWeather({
       {!isLoading && !error && weather && (
         <div className="weather-details-body">
           <div className="weather-main-metric">
-            <span className="current-temp">
-              {weather.current.temperature} {weather.units.temperature}
-            </span>
+            <span className="current-temp">{currentTempFormatted}</span>
             <span className="condition-text">
               {getWeatherConditionText(weather.current.weatherCode)}
             </span>
@@ -67,10 +74,7 @@ function CurrentWeather({
           <dl className="weather-metrics-list">
             <div className="metric-item">
               <dt>Feels Like</dt>
-              <dd>
-                {weather.current.apparentTemperature}{' '}
-                {weather.units.temperature}
-              </dd>
+              <dd>{feelsLikeFormatted}</dd>
             </div>
             <div className="metric-item">
               <dt>Humidity</dt>

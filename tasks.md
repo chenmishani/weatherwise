@@ -51,10 +51,10 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Extend `storageService.js` with favorite cities helpers, activate `FavoritesPage.jsx`, add favorite toggle button in `CurrentWeather.jsx`, and link navigation to Home dashboard.
   - **Category**: Favorites
 
-- [ ] **TASK-10**: Implement temperature unit toggle (°C / °F)
-  - **Commit Message**: `feat: implement temperature unit toggle (Celsius/Fahrenheit) [TASK-10]`
-  - **Scope**: Create `UnitToggle.jsx` component and unit context to instantly convert displayed values across the entire dashboard.
-  - **Category**: Temperature units
+- [x] **TASK-10**: Implement temperature unit toggle (°C / °F)
+  - **Commit Message**: `feat: add temperature unit preference and local conversion [TASK-10]`
+  - **Scope**: Create `temperature.js` and `TemperatureUnitToggle.jsx`, extend `storageService.js` with unit storage, and format all temperatures dynamically without extra API requests.
+  - **Category**: Units
 
 - [ ] **TASK-11**: Implement favorite cities bookmarking system
   - **Commit Message**: `feat: implement favorite cities bookmarking system [TASK-11]`
@@ -106,7 +106,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 | **TASK-07** | Display 7-day weather forecast      | Completed | Pending commit     | FR-04, NFR-02               |
 | **TASK-08** | Persist recent city searches        | Completed | Pending commit     | FR-07, NFR-05               |
 | **TASK-09** | Favorite cities & favorites page    | Completed | Pending commit     | FR-06                       |
-| **TASK-10** | Celsius / Fahrenheit unit toggle    | Pending   | Pending commit     | FR-05                       |
+| **TASK-10** | Celsius / Fahrenheit unit toggle    | Completed | Pending commit     | FR-05                       |
 | **TASK-11** | Favorite cities bookmark system     | Pending   | Pending commit     | FR-06                       |
 | **TASK-12** | Recent searches history tracking    | Pending   | Pending commit     | FR-07                       |
 | **TASK-13** | UI loading skeletons & error states | Pending   | Pending commit     | FR-09, NFR-06               |

@@ -8,7 +8,7 @@
 
 **WeatherWise** is a lightweight single-page web application that provides real-time weather metrics and a 7-day forecast for locations around the globe. Designed with a privacy-first approach, it relies entirely on client-side storage (`LocalStorage`) for user preferences such as favorite cities, search history, and temperature unit settings—requiring no user accounts, backend server, or tracking.
 
-> ⚠️ **Project Status**: Favorite Cities and Favorites Page fully supported (`TASK-09`). Temperature unit conversion features begin in upcoming tasks.
+> ⚠️ **Project Status**: Temperature unit preference (°C / °F) and local conversion supported (`TASK-10`). Persistent history features begin in upcoming tasks.
 
 ---
 
