@@ -81,10 +81,10 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Configure `.github/workflows/ci.yml` to run format:check, lint, test:run, and build on Node.js 20 on every push and pull request.
   - **Category**: CI/CD / Automation
 
-- [ ] **TASK-16**: Configure GitHub Actions CI workflow
-  - **Commit Message**: `ci: configure GitHub Actions workflow for automated tests and build [TASK-16]`
-  - **Scope**: Create `.github/workflows/ci.yml` running linting, tests, and Vite production build on push and PR.
-  - **Category**: GitHub Actions CI
+- [x] **TASK-16**: Complete project documentation and README
+  - **Commit Message**: `docs: complete project documentation [TASK-16]`
+  - **Scope**: Write comprehensive `README.md` with features, stack, setup, architecture, APIs, storage schema, testing, CI, and academic notes.
+  - **Category**: Documentation
 
 - [ ] **TASK-17**: Complete README documentation review and final verification
   - **Commit Message**: `docs: complete README setup instructions and architecture review [TASK-17]`
@@ -95,22 +95,22 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 
 ## Traceability & Commit Mapping Matrix
 
-| Task ID     | Task Description                    | Status    | Target Commit Hash | Linked Requirements         |
-| ----------- | ----------------------------------- | --------- | ------------------ | --------------------------- |
-| **TASK-01** | Define product requirements & docs  | Completed | Pending commit     | N/A (Project Planning)      |
-| **TASK-02** | Initialize React Vite project       | Completed | Pending commit     | N/A (Foundation)            |
-| **TASK-03** | React Router & layout skeleton      | Completed | Pending commit     | FR-08, NFR-02               |
-| **TASK-04** | Open-Meteo API integration          | Completed | Pending commit     | FR-01, FR-03, FR-04, NFR-01 |
-| **TASK-05** | City search & selection flow        | Completed | Pending commit     | FR-01, FR-02                |
-| **TASK-06** | Fetch & display current weather     | Completed | Pending commit     | FR-03, NFR-01, NFR-06       |
-| **TASK-07** | Display 7-day weather forecast      | Completed | Pending commit     | FR-04, NFR-02               |
-| **TASK-08** | Persist recent city searches        | Completed | Pending commit     | FR-07, NFR-05               |
-| **TASK-09** | Favorite cities & favorites page    | Completed | Pending commit     | FR-06                       |
-| **TASK-10** | Celsius / Fahrenheit unit toggle    | Completed | Pending commit     | FR-05                       |
-| **TASK-11** | UI loading skeletons & error states | Completed | Pending commit     | FR-09, NFR-06               |
-| **TASK-12** | Responsive CSS styling & polish     | Completed | Pending commit     | NFR-02, NFR-03, NFR-04      |
-| **TASK-13** | Code cleanup & architecture pass    | Completed | Pending commit     | NFR-05, NFR-06              |
-| **TASK-14** | Automated test suite (Vitest + RTL) | Completed | Pending commit     | NFR-05, DoD                 |
-| **TASK-15** | GitHub Actions CI pipeline          | Completed | Pending commit     | DoD Requirement             |
-| **TASK-16** | GitHub Actions CI pipeline          | Pending   | Pending commit     | DoD Requirement             |
-| **TASK-17** | Final README & documentation review | Pending   | Pending commit     | DoD Requirement             |
+| Task ID     | Task Description                     | Status    | Target Commit Hash | Linked Requirements         |
+| ----------- | ------------------------------------ | --------- | ------------------ | --------------------------- |
+| **TASK-01** | Define product requirements & docs   | Completed | Pending commit     | N/A (Project Planning)      |
+| **TASK-02** | Initialize React Vite project        | Completed | Pending commit     | N/A (Foundation)            |
+| **TASK-03** | React Router & layout skeleton       | Completed | Pending commit     | FR-08, NFR-02               |
+| **TASK-04** | Open-Meteo API integration           | Completed | Pending commit     | FR-01, FR-03, FR-04, NFR-01 |
+| **TASK-05** | City search & selection flow         | Completed | Pending commit     | FR-01, FR-02                |
+| **TASK-06** | Fetch & display current weather      | Completed | Pending commit     | FR-03, NFR-01, NFR-06       |
+| **TASK-07** | Display 7-day weather forecast       | Completed | Pending commit     | FR-04, NFR-02               |
+| **TASK-08** | Persist recent city searches         | Completed | Pending commit     | FR-07, NFR-05               |
+| **TASK-09** | Favorite cities & favorites page     | Completed | Pending commit     | FR-06                       |
+| **TASK-10** | Celsius / Fahrenheit unit toggle     | Completed | Pending commit     | FR-05                       |
+| **TASK-11** | UI loading skeletons & error states  | Completed | Pending commit     | FR-09, NFR-06               |
+| **TASK-12** | Responsive CSS styling & polish      | Completed | Pending commit     | NFR-02, NFR-03, NFR-04      |
+| **TASK-13** | Code cleanup & architecture pass     | Completed | Pending commit     | NFR-05, NFR-06              |
+| **TASK-14** | Automated test suite (Vitest + RTL)  | Completed | Pending commit     | NFR-05, DoD                 |
+| **TASK-15** | GitHub Actions CI pipeline           | Completed | Pending commit     | DoD Requirement             |
+| **TASK-16** | Final README & project documentation | Completed | Pending commit     | DoD Requirement             |
+| **TASK-17** | Final README & documentation review  | Pending   | Pending commit     | DoD Requirement             |

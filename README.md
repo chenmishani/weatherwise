@@ -1,125 +1,250 @@
 # 🌤️ WeatherWise
 
-> **University Final Project** — A responsive, modern weather dashboard web application built with React, Vite, and the Open-Meteo API.
+A modern, lightweight React web application for real-time weather metrics, location search, and 7-day weather forecasts across the globe. Built with a privacy-first, client-side persistence architecture requiring no user accounts, backend servers, or API keys.
+
+> ⚠️ **Project Status**: Complete application documentation, architecture overview, and academic project submission notes finalized (`TASK-16`).
 
 ---
 
-## 📌 Overview
+## 📌 Overview & Main Features
 
-**WeatherWise** is a lightweight single-page web application that provides real-time weather metrics and a 7-day forecast for locations around the globe. Designed with a privacy-first approach, it relies entirely on client-side storage (`LocalStorage`) for user preferences such as favorite cities, search history, and temperature unit settings—requiring no user accounts, backend server, or tracking.
+**WeatherWise** provides an intuitive, responsive interface for discovering and monitoring weather conditions worldwide. Powered by the Open-Meteo APIs, it features client-side persistence using browser `LocalStorage` to save user preferences, search history, and favorite locations.
 
-> ⚠️ **Project Status**: GitHub Actions CI workflow configured to verify formatting, linting, tests, and build quality on every push and pull request (`TASK-15`).
+### Key Features
+
+- **Global Location Search**: Fast autocomplete search for cities worldwide with country flags and administrative region details.
+- **Accessible Keyboard Navigation**: Complete `ArrowDown`, `ArrowUp`, `Enter`, and `Escape` keyboard controls for autocomplete results.
+- **Real-Time Current Weather**: Displays temperature, feels-like temperature, humidity, wind speed, observation timestamp, and condition descriptions.
+- **Condition-Aware Atmospheric Backgrounds**: Dynamic SVG atmospheric illustrations tailored to weather conditions and day/night state.
+- **7-Day Forecast Grid**: Deterministic responsive 4+3 forecast grid layout on desktop, adapting seamlessly to tablet and mobile.
+- **Temperature Unit Conversion**: Toggle between Celsius (°C) and Fahrenheit (°F) with persistent user preference.
+- **Favorite Locations**: Bookmarking system to save favorite cities for quick navigation.
+- **Recent Searches**: Quick-access chip list tracking the 5 most recently selected locations.
+- **Sticky Header & Auto-Scroll**: Sticky top navigation bar and smooth automatic scrolling to weather results upon city selection.
+- **Fully Responsive & Accessible**: Built with standard CSS custom properties, screen-reader alert/status roles, `:focus-visible` outline rings, and `prefers-reduced-motion` support.
 
 ---
 
-## 🛠️ Planned Technologies
+## 🛠️ Technology Stack
 
 - **Frontend Library**: React 18+
 - **Build Tool & Dev Server**: Vite
 - **Language**: JavaScript (ES6+)
 - **Routing**: React Router v6
-- **Styling**: Vanilla CSS (CSS Modules & Custom Properties)
-- **Data Fetching**: Native Web `Fetch API`
-- **State Persistence**: Browser `LocalStorage` API
-- **Testing Framework**: Vitest & React Testing Library
-- **Continuous Integration**: GitHub Actions CI (`.github/workflows/ci.yml`)
+- **Styling**: Vanilla CSS (Custom Properties, Flexbox, & CSS Grid)
+- **Data Fetching**: Native Web `Fetch API` with `AbortController` request cancellation
+- **Persistence**: Web `LocalStorage API`
+- **Data APIs**: Open-Meteo Geocoding API & Open-Meteo Forecast API
+- **Automated Testing**: Vitest, React Testing Library, `@testing-library/jest-dom`, `jsdom`
+- **Code Quality**: ESLint, Prettier
+- **Continuous Integration**: GitHub Actions
 
 ---
 
 ## 🌐 APIs Used
 
-WeatherWise uses the free and open [Open-Meteo](https://open-meteo.com/) APIs (no API key required):
+WeatherWise integrates with Open-Meteo public APIs requiring **no API keys or authentication**:
 
 1. **Open-Meteo Geocoding API**
-   - Endpoint: `https://geocoding-api.open-meteo.com/v1/search`
-   - Purpose: Real-time search and geocoding auto-complete for city names, returning matching cities with latitude, longitude, region, and country code.
-
-2. **Open-Meteo Weather Forecast API**
-   - Endpoint: `https://api.open-meteo.com/v1/forecast`
-   - Purpose: Fetching current weather metrics (temperature, apparent temperature, humidity, wind speed, weather condition) and 7-day daily forecasts (daily max/min temperatures, weather codes).
-
----
-
-## 📁 Planned Project Structure
-
-```
-weatherwise/
-├── .github/
-│   └── workflows/
-│       └── ci.yml                 # GitHub Actions CI configuration (TASK-16)
-├── PRD.md                         # Product Requirements Document (TASK-01)
-├── tasks.md                       # Task Roadmap & Commit Matrix (TASK-01)
-├── README.md                      # Project documentation (TASK-01)
-├── index.html                     # HTML entry point (TASK-02)
-├── vite.config.js                 # Vite build configuration (TASK-02)
-├── package.json                   # Project dependencies and scripts (TASK-02)
-└── src/
-    ├── main.jsx                   # React application entry point (TASK-02)
-    ├── App.jsx                    # Root App component with React Router (TASK-03)
-    ├── components/                # Reusable UI components
-    │   ├── Header.jsx             # Top bar navigation & logo (TASK-03)
-    │   ├── SearchBar.jsx          # City search input (TASK-06)
-    │   ├── SearchResults.jsx      # Multi-result location picker (TASK-07)
-    │   ├── CurrentWeather.jsx     # Current weather card (TASK-08)
-    │   ├── ForecastList.jsx       # 7-day forecast container (TASK-09)
-    │   ├── ForecastCard.jsx       # Single day forecast card (TASK-09)
-    │   ├── UnitToggle.jsx         # °C / °F toggle switch (TASK-10)
-    │   ├── RecentSearches.jsx     # Recent search history bar (TASK-12)
-    │   └── LoadingSkeleton.jsx    # Loading skeletons & error states (TASK-13)
-    ├── context/                   # React Context Providers
-    │   └── WeatherContext.jsx     # App state (unit, active city, recents, favorites) (TASK-10)
-    ├── services/                  # External API & LocalStorage handlers
-    │   ├── geocodingService.js    # Geocoding API service (TASK-04)
-    │   ├── weatherService.js      # Weather Forecast API service (TASK-04)
-    │   └── storageService.js      # LocalStorage helper functions (TASK-05)
-    ├── pages/                     # Route pages
-    │   ├── Home.jsx               # Dashboard main page
-    │   ├── FavoritesPage.jsx      # Dedicated saved cities page
-    │   └── NotFound.jsx           # 404 page
-    └── styles/                    # Styling files
-        ├── variables.css          # CSS theme variables & design tokens
-        └── main.css               # Global layout and responsive styles
-```
+   - **Endpoint**: `https://geocoding-api.open-meteo.com/v1/search`
+   - **Purpose**: Converts city search query strings into normalized location objects containing name, country, ISO country code, administrative region (`admin1`), latitude, longitude, and timezone.
+2. **Open-Meteo Forecast API**
+   - **Endpoint**: `https://api.open-meteo.com/v1/forecast`
+   - **Purpose**: Retrieves current weather metrics (`temperature_2m`, `apparent_temperature`, `relative_humidity_2m`, `is_day`, `weather_code`, `wind_speed_10m`) and 7-day daily forecast ranges (`temperature_2m_max`, `temperature_2m_min`, `weather_code`).
 
 ---
 
-## 🚀 Local Development Instructions
-
-> ⚠️ **Note**: Application foundation has been initialized (TASK-02). You can run dev, build, lint, and format scripts as shown below.
+## 📦 Installation & Running Instructions
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18.0.0 or higher recommended)
-- `npm` (v9.0.0 or higher)
+- **Node.js**: `v20.0.0` or higher
+- **npm**: `v10.0.0` or higher
 
-### Setup Steps (Pending TASK-02)
+### Getting Started
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/weatherwise.git
+git clone https://github.com/chenmishani/weatherwise.git
 
-# 2. Navigate to project root
+# 2. Navigate into the project directory
 cd weatherwise
 
-# 3. Install project dependencies
-npm install
+# 3. Install dependencies deterministically
+npm ci
 
-# 4. Start Vite development server
+# 4. Start the local development server
 npm run dev
+```
 
-# 5. Run test suite
-npm run test
+The application will be available at `http://localhost:5173/` (or the next available port).
+
+---
+
+## 🚀 Development & Verification Commands
+
+| Command                | Description                                                                                                                          |
+| :--------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`          | Starts Vite local development server with hot module replacement (HMR).                                                              |
+| `npm run format`       | Formats all source files across the project using Prettier.                                                                          |
+| `npm run format:check` | Verifies code formatting compliance without modifying files.                                                                         |
+| `npm run lint`         | Runs ESLint to check for code quality and syntax issues.                                                                             |
+| `npm run test`         | Launches Vitest test runner in interactive watch mode.                                                                               |
+| `npm run test:run`     | Runs the full automated test suite once in non-watch mode.                                                                           |
+| `npm run build`        | Compiles production bundle to the `dist/` directory.                                                                                 |
+| `npm run check`        | Executes full CI verification sequence locally (`format:check` $\rightarrow$ `lint` $\rightarrow$ `test:run` $\rightarrow$ `build`). |
+
+---
+
+## 📁 Project Structure
+
+```text
+weatherwise/
+├── .github/
+│   └── workflows/
+│       └── ci.yml               # GitHub Actions CI quality pipeline
+├── public/
+│   └── weather-backgrounds/     # Vector SVG atmospheric background assets
+├── src/
+│   ├── components/              # Reusable presentation components
+│   │   ├── CurrentWeather.jsx
+│   │   ├── EmptyState.jsx
+│   │   ├── ErrorMessage.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Forecast.jsx
+│   │   ├── ForecastDay.jsx
+│   │   ├── Header.jsx
+│   │   ├── Layout.jsx
+│   │   ├── LoadingIndicator.jsx
+│   │   ├── RecentSearches.jsx
+│   │   ├── SearchBar.jsx
+│   │   ├── SearchResultItem.jsx
+│   │   ├── SearchResults.jsx
+│   │   └── TemperatureUnitToggle.jsx
+│   ├── hooks/                   # Custom React hooks
+│   │   ├── useCitySearch.js
+│   │   ├── useCityWeather.js
+│   │   └── useDebounce.js
+│   ├── pages/                   # Application route views
+│   │   ├── FavoritesPage.jsx
+│   │   ├── Home.jsx
+│   │   └── NotFound.jsx
+│   ├── services/                # API integration & LocalStorage service layer
+│   │   ├── apiConfig.js
+│   │   ├── geocodingService.js
+│   │   ├── storageService.js
+│   │   └── weatherService.js
+│   ├── styles/                  # CSS tokens, base styles, & responsive layout
+│   │   ├── main.css
+│   │   └── variables.css
+│   ├── tests/                   # Vitest & React Testing Library test suite
+│   │   ├── components/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   └── setup.js
+│   ├── utils/                   # Shared utility modules
+│   │   ├── countryFlag.js
+│   │   ├── formatDate.js
+│   │   ├── formatLocation.js
+│   │   ├── temperature.js
+│   │   └── weatherCodes.js
+│   ├── App.jsx                  # React Router routes definition
+│   └── main.jsx                 # Application entry point
+├── index.html
+├── package.json
+├── vite.config.js
+├── tasks.md
+├── PRD.md
+└── README.md
 ```
 
 ---
 
-## 📑 Core Documentation References
+## 🏗️ Application Architecture Overview
 
-- **Product Requirements Document**: See [PRD.md](./PRD.md) for detailed user flows, functional/non-functional requirements, data models, error handling, and wireframes.
-- **Task Implementation Roadmap**: See [tasks.md](./tasks.md) for the complete list of ordered tasks, commit message conventions, and traceability matrix.
+- **View & Hook Separation**: `Home.jsx` delegates search lifecycle and weather fetching to focused custom hooks (`useCitySearch`, `useCityWeather`), ensuring clean separation between data fetching and UI rendering.
+- **Race Condition Safeguards**: Asynchronous geocoding and weather API requests employ `AbortController` instances to automatically cancel pending requests when queries change or components unmount.
+- **Decoupled Service Layer**: API network calls and LocalStorage read/write logic are isolated in `src/services/` without framework dependencies.
+- **Centralized Utilities**: Location string formatting, date formatting, temperature unit conversions, WMO code descriptions, and country flag generation are maintained in `src/utils/`.
 
 ---
 
-## 📄 License
+## 🚦 Routing Overview
 
-Created for academic evaluation purposes as a University Final Project.
+Routing is managed by **React Router v6** inside `App.jsx` with a consistent `<Layout>` shell:
+
+- `/` (**Home**): Main dashboard containing location search, recent search chips, current weather presentation, and 7-day forecast.
+- `/favorites` (**FavoritesPage**): Grid of saved favorite cities with instant location removal and quick navigation back to Home.
+- `*` (**NotFound**): Friendly 404 error page for unrecognized URL paths.
+
+---
+
+## 💾 LocalStorage Behavior
+
+All user data persists locally in the browser via `src/services/storageService.js`:
+
+- `weatherwise_recent_searches`: Stores up to 5 recently selected city objects (placed newest first, deduplicated by `id`).
+- `weatherwise_favorite_cities`: Stores bookmarked favorite city objects (deduplicated by `id`).
+- `weatherwise_temperature_unit`: Persists temperature preference (`'celsius'` or `'fahrenheit'`).
+
+_Note_: Malformed JSON or restricted storage environments fail gracefully without throwing unhandled exceptions. Custom window events (`weatherwise_favorites_updated`) keep route views in sync.
+
+---
+
+## 🧪 Testing & Quality Assurance
+
+Automated testing is configured using **Vitest** and **React Testing Library**:
+
+- **Test Suite**: **48 automated tests** passing across **11 test files**.
+- **Coverage Areas**:
+  - `temperature.js`: Celsius to Fahrenheit conversion, rounding, and display formatting.
+  - `countryFlag.js`: ISO country code to Unicode flag emoji mapping and fallback globe `🌍`.
+  - `formatLocation.js`: Location string construction for cities, regions, and countries.
+  - `weatherCodes.js`: WMO code descriptions and day/night SVG background mapping.
+  - `storageService.js`: Favorites, recent searches, unit storage, duplicate prevention, and malformed JSON recovery.
+  - `Components`: Controlled inputs, button clicks, status/alert roles, and `SearchBar` keyboard navigation (`ArrowDown`, `ArrowUp`, `Enter`, `Escape`).
+
+---
+
+## ⚙️ Continuous Integration (CI)
+
+A GitHub Actions CI workflow is configured in `.github/workflows/ci.yml`.
+
+On every `push` and `pull_request` to `main` and `master` branches, the runner executes on `ubuntu-latest` with Node.js 20:
+
+1. `npm ci` (Deterministic dependency installation)
+2. `npm run format:check` (Prettier code style check)
+3. `npm run lint` (ESLint static code inspection)
+4. `npm run test:run` (Automated Vitest test suite)
+5. `npm run build` (Production bundle build compilation)
+
+---
+
+## ♿ Accessibility & Responsive Design
+
+- **Accessibility**: ARIA combobox and listbox attributes (`role="combobox"`, `role="listbox"`, `role="option"`, `aria-activedescendant`), alert/status announcement regions (`role="alert"`, `role="status"`), `:focus-visible` focus rings, and `@media (prefers-reduced-motion: reduce)` animation adjustments.
+- **Responsive Layout**: Mobile-first CSS flexbox and grid layouts, sticky header navigation, fluid typography (`clamp()`), and text wrapping rules preventing horizontal overflow across desktop, tablet, and mobile devices.
+
+---
+
+## ⚠️ Known Limitations
+
+- **API Dependency**: Weather accuracy depends on upstream Open-Meteo API availability.
+- **Connectivity**: Requires an active internet connection (no offline service worker caching).
+- **Client Storage Only**: Favorites and recent searches are tied to the local browser instance (no cloud user accounts).
+
+---
+
+## 🔮 Future Improvement Ideas
+
+- Geolocation-based weather fetching ("Use Current Location").
+- Hourly weather forecast and precipitation chance charts.
+- Severe weather alert banner notifications.
+- Offline Progressive Web App (PWA) support.
+- One-click deployment pipeline to GitHub Pages or Vercel.
+
+---
+
+## 🎓 Academic Project Note
+
+This project was developed as an academic final project demonstrating modern React architecture, clean code practices, client-side storage patterns, accessibility standards, automated testing, and CI/CD automation.
