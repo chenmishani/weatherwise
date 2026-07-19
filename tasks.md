@@ -76,10 +76,10 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Configure Vitest and React Testing Library; create test suites for utilities, storage service, and components including SearchBar keyboard interactions.
   - **Category**: Testing / Automated QA
 
-- [ ] **TASK-15**: Add unit and integration tests
-  - **Commit Message**: `test: add unit and integration tests for services and components [TASK-15]`
-  - **Scope**: Configure Vitest and React Testing Library; test API services (`src/services/geocodingService.js`, `src/services/weatherService.js`), `src/services/storageService.js`, `UnitToggle`, and `SearchBar`.
-  - **Category**: Testing
+- [x] **TASK-15**: Add GitHub Actions CI quality check workflow
+  - **Commit Message**: `ci: add GitHub Actions quality checks [TASK-15]`
+  - **Scope**: Configure `.github/workflows/ci.yml` to run format:check, lint, test:run, and build on Node.js 20 on every push and pull request.
+  - **Category**: CI/CD / Automation
 
 - [ ] **TASK-16**: Configure GitHub Actions CI workflow
   - **Commit Message**: `ci: configure GitHub Actions workflow for automated tests and build [TASK-16]`
@@ -111,6 +111,6 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 | **TASK-12** | Responsive CSS styling & polish     | Completed | Pending commit     | NFR-02, NFR-03, NFR-04      |
 | **TASK-13** | Code cleanup & architecture pass    | Completed | Pending commit     | NFR-05, NFR-06              |
 | **TASK-14** | Automated test suite (Vitest + RTL) | Completed | Pending commit     | NFR-05, DoD                 |
-| **TASK-15** | Vitest unit and component tests     | Pending   | Pending commit     | DoD Requirement             |
+| **TASK-15** | GitHub Actions CI pipeline          | Completed | Pending commit     | DoD Requirement             |
 | **TASK-16** | GitHub Actions CI pipeline          | Pending   | Pending commit     | DoD Requirement             |
 | **TASK-17** | Final README & documentation review | Pending   | Pending commit     | DoD Requirement             |
