@@ -1,6 +1,14 @@
 import LoadingIndicator from './LoadingIndicator';
 
-function SearchBar({ query, onChange, onClear, isLoading }) {
+function SearchBar({
+  query,
+  onChange,
+  onClear,
+  onKeyDown,
+  isLoading,
+  isOpen,
+  activeOptionId,
+}) {
   return (
     <div className="search-bar-container">
       <label htmlFor="city-search-input" className="search-label">
@@ -10,8 +18,14 @@ function SearchBar({ query, onChange, onClear, isLoading }) {
         <input
           id="city-search-input"
           type="text"
+          role="combobox"
+          aria-expanded={isOpen}
+          aria-autocomplete="list"
+          aria-controls="city-search-listbox"
+          aria-activedescendant={activeOptionId || undefined}
           value={query}
           onChange={(e) => onChange(e.target.value)}
+          onKeyDown={onKeyDown}
           placeholder="Enter city name (e.g. London, Tokyo, Paris)..."
           className="search-input"
           autoComplete="off"

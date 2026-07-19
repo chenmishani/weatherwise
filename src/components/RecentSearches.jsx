@@ -1,3 +1,5 @@
+import { countryCodeToFlag } from '../utils/countryFlag';
+
 function RecentSearches({ searches, onSelectCity, onClearRecents }) {
   if (!searches || searches.length === 0) {
     return null;
@@ -23,6 +25,7 @@ function RecentSearches({ searches, onSelectCity, onClearRecents }) {
           const locationLabel = [city.name, city.admin1, city.country]
             .filter(Boolean)
             .join(', ');
+          const flag = countryCodeToFlag(city.countryCode);
 
           return (
             <li key={city.id}>
@@ -31,7 +34,10 @@ function RecentSearches({ searches, onSelectCity, onClearRecents }) {
                 className="recent-city-chip"
                 onClick={() => onSelectCity(city)}
               >
-                🕒 {locationLabel}
+                <span className="recent-chip-flag" aria-hidden="true">
+                  {flag}
+                </span>{' '}
+                {locationLabel}
               </button>
             </li>
           );

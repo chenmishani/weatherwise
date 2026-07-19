@@ -54,3 +54,42 @@ export function getWeatherConditionText(code) {
       return 'Unknown conditions';
   }
 }
+
+/**
+ * Maps WMO weather code and day/night state to a local SVG background path.
+ * @param {number} code - WMO weather code.
+ * @param {boolean} [isDay=true] - Day vs night indicator.
+ * @returns {string} Asset path relative to public root (e.g. "/weather-backgrounds/clear-day.svg").
+ */
+export function getWeatherBackgroundPath(code, isDay = true) {
+  const numericCode = Number(code);
+  const dayNightSuffix = isDay ? 'day' : 'night';
+
+  if (numericCode === 0 || numericCode === 1) {
+    return `/weather-backgrounds/clear-${dayNightSuffix}.svg`;
+  }
+  if (numericCode === 2 || numericCode === 3) {
+    return `/weather-backgrounds/cloudy-${dayNightSuffix}.svg`;
+  }
+  if (numericCode === 45 || numericCode === 48) {
+    return '/weather-backgrounds/fog.svg';
+  }
+  if (
+    (numericCode >= 51 && numericCode <= 67) ||
+    (numericCode >= 80 && numericCode <= 82)
+  ) {
+    return `/weather-backgrounds/rainy-${dayNightSuffix}.svg`;
+  }
+  if (
+    (numericCode >= 71 && numericCode <= 77) ||
+    numericCode === 85 ||
+    numericCode === 86
+  ) {
+    return '/weather-backgrounds/snow.svg';
+  }
+  if (numericCode === 95 || numericCode === 96 || numericCode === 99) {
+    return '/weather-backgrounds/thunderstorm.svg';
+  }
+
+  return '/weather-backgrounds/default.svg';
+}

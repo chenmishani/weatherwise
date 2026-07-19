@@ -1,7 +1,11 @@
-import { getWeatherConditionText } from '../utils/weatherCodes';
+import {
+  getWeatherConditionText,
+  getWeatherBackgroundPath,
+} from '../utils/weatherCodes';
 import { formatTemperature } from '../utils/temperature';
 import LoadingIndicator from './LoadingIndicator';
 import ErrorMessage from './ErrorMessage';
+import TemperatureUnitToggle from './TemperatureUnitToggle';
 
 function CurrentWeather({
   city,
@@ -11,6 +15,7 @@ function CurrentWeather({
   isFavorite,
   onToggleFavorite,
   unit = 'celsius',
+  onUnitChange,
 }) {
   if (!city) {
     return null;
@@ -27,28 +32,53 @@ function CurrentWeather({
     ? formatTemperature(weather.current.apparentTemperature, unit)
     : '';
 
+  const hasWeather = !isLoading && !error && weather?.current;
+  const bgPath = hasWeather
+    ? getWeatherBackgroundPath(
+        weather.current.weatherCode,
+        weather.current.isDay
+      )
+    : null;
+
+  const cardStyle = bgPath
+    ? {
+        backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.75)), url(${bgPath})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }
+    : {};
+
   return (
-    <section className="current-weather-card" aria-label="Current Weather">
+    <section
+      className={`current-weather-card ${hasWeather ? 'has-weather-bg' : ''}`}
+      style={cardStyle}
+      aria-label="Current Weather"
+    >
       <header className="current-weather-header">
         <div className="location-header-row">
           <div>
             <span className="location-badge">Selected Location</span>
             <h2>{locationName}</h2>
           </div>
-          {onToggleFavorite && (
-            <button
-              type="button"
-              onClick={onToggleFavorite}
-              className={`favorite-toggle-btn ${isFavorite ? 'is-favorite' : ''}`}
-              aria-label={
-                isFavorite
-                  ? `Remove ${city.name} from favorites`
-                  : `Add ${city.name} to favorites`
-              }
-            >
-              {isFavorite ? '★ Remove from Favorites' : '☆ Add to Favorites'}
-            </button>
-          )}
+          <div className="weather-card-actions">
+            {onUnitChange && (
+              <TemperatureUnitToggle unit={unit} onUnitChange={onUnitChange} />
+            )}
+            {onToggleFavorite && (
+              <button
+                type="button"
+                onClick={onToggleFavorite}
+                className={`favorite-toggle-btn ${isFavorite ? 'is-favorite' : ''}`}
+                aria-label={
+                  isFavorite
+                    ? `Remove ${city.name} from favorites`
+                    : `Add ${city.name} to favorites`
+                }
+              >
+                {isFavorite ? '★ Remove from Favorites' : '☆ Add to Favorites'}
+              </button>
+            )}
+          </div>
         </div>
       </header>
 
@@ -63,7 +93,7 @@ function CurrentWeather({
 
       {!isLoading && error && <ErrorMessage message={error} type="weather" />}
 
-      {!isLoading && !error && weather && (
+      {hasWeather && (
         <div className="weather-details-body">
           <div className="weather-main-metric">
             <span className="current-temp">{currentTempFormatted}</span>

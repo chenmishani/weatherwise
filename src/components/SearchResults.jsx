@@ -2,7 +2,7 @@ import SearchResultItem from './SearchResultItem';
 import ErrorMessage from './ErrorMessage';
 import EmptyState from './EmptyState';
 
-function SearchResults({ results, onSelect, error, query }) {
+function SearchResults({ results, onSelect, error, query, highlightedIndex }) {
   if (error) {
     return <ErrorMessage message={error} type="search" />;
   }
@@ -22,9 +22,19 @@ function SearchResults({ results, onSelect, error, query }) {
   }
 
   return (
-    <ul className="search-results-list" aria-label="Search Results">
-      {results.map((city) => (
-        <SearchResultItem key={city.id} city={city} onSelect={onSelect} />
+    <ul
+      id="city-search-listbox"
+      role="listbox"
+      className="search-results-list"
+      aria-label="Search Results"
+    >
+      {results.map((city, index) => (
+        <SearchResultItem
+          key={city.id}
+          city={city}
+          onSelect={onSelect}
+          isHighlighted={index === highlightedIndex}
+        />
       ))}
     </ul>
   );

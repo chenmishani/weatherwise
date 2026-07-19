@@ -1,7 +1,8 @@
 import ForecastDay from './ForecastDay';
 import EmptyState from './EmptyState';
+import TemperatureUnitToggle from './TemperatureUnitToggle';
 
-function Forecast({ daily, unit, isLoading, error }) {
+function Forecast({ daily, unit, onUnitChange, isLoading, error }) {
   if (isLoading || error || !daily) {
     return null;
   }
@@ -9,7 +10,12 @@ function Forecast({ daily, unit, isLoading, error }) {
   if (daily.length === 0) {
     return (
       <section className="forecast-section" aria-label="7-Day Forecast">
-        <h2>7-Day Forecast</h2>
+        <header className="forecast-header-row">
+          <h2>7-Day Forecast</h2>
+          {onUnitChange && (
+            <TemperatureUnitToggle unit={unit} onUnitChange={onUnitChange} />
+          )}
+        </header>
         <EmptyState
           icon="📅"
           title="Forecast Unavailable"
@@ -21,7 +27,12 @@ function Forecast({ daily, unit, isLoading, error }) {
 
   return (
     <section className="forecast-section" aria-label="7-Day Forecast">
-      <h2>7-Day Forecast</h2>
+      <header className="forecast-header-row">
+        <h2>7-Day Forecast</h2>
+        {onUnitChange && (
+          <TemperatureUnitToggle unit={unit} onUnitChange={onUnitChange} />
+        )}
+      </header>
       <ul className="forecast-grid">
         {daily.map((day, index) => (
           <ForecastDay

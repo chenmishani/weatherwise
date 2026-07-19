@@ -61,10 +61,10 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Create `LoadingIndicator.jsx`, `ErrorMessage.jsx`, and `EmptyState.jsx` components; enhance loading spinner transitions, accessibility roles, and error banner consistency across the app.
   - **Category**: UX / Polish
 
-- [ ] **TASK-12**: Implement recent search history tracking
-  - **Commit Message**: `feat: implement recent search history tracking [TASK-12]`
-  - **Scope**: Create `RecentSearches.jsx` to store and display the last 5 searched locations for quick re-fetching.
-  - **Category**: Recent searches
+- [x] **TASK-12**: Improve responsive layout and visual consistency
+  - **Commit Message**: `style: improve responsive layout and visual consistency [TASK-12]`
+  - **Scope**: Enhance CSS flexbox/grid layout, fluid typography, touch target padding, focus outlines, word wrapping, and reduced-motion accessibility rules across viewports.
+  - **Category**: Responsiveness / Styling
 
 - [ ] **TASK-13**: Add loading skeletons, empty results, and error state UI
   - **Commit Message**: `feat: add loading skeletons, empty search results, and error state UI [TASK-13]`
@@ -108,7 +108,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 | **TASK-09** | Favorite cities & favorites page    | Completed | Pending commit     | FR-06                       |
 | **TASK-10** | Celsius / Fahrenheit unit toggle    | Completed | Pending commit     | FR-05                       |
 | **TASK-11** | UI loading skeletons & error states | Completed | Pending commit     | FR-09, NFR-06               |
-| **TASK-12** | Recent searches history tracking    | Pending   | Pending commit     | FR-07                       |
+| **TASK-12** | Responsive CSS styling & polish     | Completed | Pending commit     | NFR-02, NFR-03, NFR-04      |
 | **TASK-13** | UI loading skeletons & error states | Pending   | Pending commit     | FR-09, NFR-06               |
 | **TASK-14** | Responsive CSS styling & polish     | Pending   | Pending commit     | NFR-02, NFR-03, NFR-04      |
 | **TASK-15** | Vitest unit and component tests     | Pending   | Pending commit     | DoD Requirement             |

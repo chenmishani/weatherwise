@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="cloudyDayGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#64748b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#cloudyDayGrad)"/>
+  <path d="M 100 180 Q 140 120 200 140 Q 240 100 300 130 Q 360 110 400 160 Q 440 180 400 220 L 100 220 Z" fill="#ffffff" opacity="0.15"/>
+  <path d="M 400 120 Q 450 60 520 90 Q 580 40 640 80 Q 700 60 740 110 L 400 120 Z" fill="#ffffff" opacity="0.1"/>
+</svg>

@@ -23,7 +23,7 @@ export async function getWeatherByCoordinates(
   }
 
   const tz = timezone || 'auto';
-  const url = `${FORECAST_API_BASE}?latitude=${numLat}&longitude=${numLon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=7&timezone=${encodeURIComponent(tz)}`;
+  const url = `${FORECAST_API_BASE}?latitude=${numLat}&longitude=${numLon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=7&timezone=${encodeURIComponent(tz)}`;
 
   let response;
   try {
@@ -73,6 +73,7 @@ export async function getWeatherByCoordinates(
       temperature: current.temperature_2m ?? 0,
       apparentTemperature: current.apparent_temperature ?? 0,
       humidity: current.relative_humidity_2m ?? 0,
+      isDay: current.is_day !== undefined ? current.is_day !== 0 : true,
       weatherCode: current.weather_code ?? 0,
       windSpeed: current.wind_speed_10m ?? 0,
     },
