@@ -1,4 +1,5 @@
 import { countryCodeToFlag } from '../utils/countryFlag';
+import { formatLocationLabel } from '../utils/formatLocation';
 
 function RecentSearches({ searches, onSelectCity, onClearRecents }) {
   if (!searches || searches.length === 0) {
@@ -22,9 +23,7 @@ function RecentSearches({ searches, onSelectCity, onClearRecents }) {
       </header>
       <ul className="recent-searches-list">
         {searches.map((city) => {
-          const locationLabel = [city.name, city.admin1, city.country]
-            .filter(Boolean)
-            .join(', ');
+          const locationLabel = formatLocationLabel(city);
           const flag = countryCodeToFlag(city.countryCode);
 
           return (

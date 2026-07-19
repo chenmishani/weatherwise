@@ -1,6 +1,11 @@
-const RECENT_SEARCHES_KEY = 'weatherwise_recent_searches';
-const FAVORITE_CITIES_KEY = 'weatherwise_favorite_cities';
-const TEMPERATURE_UNIT_KEY = 'weatherwise_temperature_unit';
+export const STORAGE_KEYS = {
+  RECENT_SEARCHES: 'weatherwise_recent_searches',
+  FAVORITE_CITIES: 'weatherwise_favorite_cities',
+  TEMPERATURE_UNIT: 'weatherwise_temperature_unit',
+};
+
+export const FAVORITES_UPDATED_EVENT = 'weatherwise_favorites_updated';
+
 const MAX_RECENT_ITEMS = 5;
 
 /**
@@ -26,12 +31,13 @@ function normalizeCityForStorage(city) {
 }
 
 /**
- * Safely reads recent searches from LocalStorage.
- * @returns {Array<Object>} Array of recent city objects.
+ * Helper to safely parse and normalize a stored city array from LocalStorage.
+ * @param {string} key - Storage key.
+ * @returns {Array<Object>} Normalized array of location objects.
  */
-export function getRecentSearches() {
+function getStoredCityArray(key) {
   try {
-    const dataStr = window.localStorage.getItem(RECENT_SEARCHES_KEY);
+    const dataStr = window.localStorage.getItem(key);
     if (!dataStr) {
       return [];
     }
@@ -52,6 +58,14 @@ export function getRecentSearches() {
   } catch {
     return [];
   }
+}
+
+/**
+ * Safely reads recent searches from LocalStorage.
+ * @returns {Array<Object>} Array of recent city objects.
+ */
+export function getRecentSearches() {
+  return getStoredCityArray(STORAGE_KEYS.RECENT_SEARCHES);
 }
 
 /**
@@ -77,9 +91,12 @@ export function saveRecentSearch(city) {
   const updated = [normalized, ...filtered].slice(0, MAX_RECENT_ITEMS);
 
   try {
-    window.localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(updated));
+    window.localStorage.setItem(
+      STORAGE_KEYS.RECENT_SEARCHES,
+      JSON.stringify(updated)
+    );
   } catch {
-    // Fail gracefully if LocalStorage is unavailable or restricted
+    // Fail gracefully if LocalStorage is restricted
   }
 
   return updated;
@@ -91,9 +108,9 @@ export function saveRecentSearch(city) {
  */
 export function clearRecentSearches() {
   try {
-    window.localStorage.removeItem(RECENT_SEARCHES_KEY);
+    window.localStorage.removeItem(STORAGE_KEYS.RECENT_SEARCHES);
   } catch {
-    // Fail gracefully if LocalStorage is unavailable
+    // Fail gracefully
   }
   return [];
 }
@@ -103,28 +120,7 @@ export function clearRecentSearches() {
  * @returns {Array<Object>} Array of favorite city objects.
  */
 export function getFavoriteCities() {
-  try {
-    const dataStr = window.localStorage.getItem(FAVORITE_CITIES_KEY);
-    if (!dataStr) {
-      return [];
-    }
-
-    const parsed = JSON.parse(dataStr);
-    if (!Array.isArray(parsed)) {
-      return [];
-    }
-
-    return parsed
-      .map(normalizeCityForStorage)
-      .filter(
-        (city) =>
-          city &&
-          Number.isFinite(city.latitude) &&
-          Number.isFinite(city.longitude)
-      );
-  } catch {
-    return [];
-  }
+  return getStoredCityArray(STORAGE_KEYS.FAVORITE_CITIES);
 }
 
 /**
@@ -150,8 +146,11 @@ export function saveFavoriteCity(city) {
   const updated = [normalized, ...filtered];
 
   try {
-    window.localStorage.setItem(FAVORITE_CITIES_KEY, JSON.stringify(updated));
-    window.dispatchEvent(new Event('weatherwise_favorites_updated'));
+    window.localStorage.setItem(
+      STORAGE_KEYS.FAVORITE_CITIES,
+      JSON.stringify(updated)
+    );
+    window.dispatchEvent(new Event(FAVORITES_UPDATED_EVENT));
   } catch {
     // Fail gracefully
   }
@@ -173,8 +172,11 @@ export function removeFavoriteCity(cityId) {
   const updated = current.filter((item) => String(item.id) !== String(cityId));
 
   try {
-    window.localStorage.setItem(FAVORITE_CITIES_KEY, JSON.stringify(updated));
-    window.dispatchEvent(new Event('weatherwise_favorites_updated'));
+    window.localStorage.setItem(
+      STORAGE_KEYS.FAVORITE_CITIES,
+      JSON.stringify(updated)
+    );
+    window.dispatchEvent(new Event(FAVORITES_UPDATED_EVENT));
   } catch {
     // Fail gracefully
   }
@@ -201,7 +203,7 @@ export function isFavoriteCity(cityId) {
  */
 export function getTemperatureUnit() {
   try {
-    const stored = window.localStorage.getItem(TEMPERATURE_UNIT_KEY);
+    const stored = window.localStorage.getItem(STORAGE_KEYS.TEMPERATURE_UNIT);
     if (stored === 'fahrenheit') {
       return 'fahrenheit';
     }
@@ -219,7 +221,7 @@ export function getTemperatureUnit() {
 export function saveTemperatureUnit(unit) {
   const validUnit = unit === 'fahrenheit' ? 'fahrenheit' : 'celsius';
   try {
-    window.localStorage.setItem(TEMPERATURE_UNIT_KEY, validUnit);
+    window.localStorage.setItem(STORAGE_KEYS.TEMPERATURE_UNIT, validUnit);
   } catch {
     // Fail gracefully
   }

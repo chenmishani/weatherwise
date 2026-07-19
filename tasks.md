@@ -66,10 +66,10 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Enhance CSS flexbox/grid layout, fluid typography, touch target padding, focus outlines, word wrapping, and reduced-motion accessibility rules across viewports.
   - **Category**: Responsiveness / Styling
 
-- [ ] **TASK-13**: Add loading skeletons, empty results, and error state UI
-  - **Commit Message**: `feat: add loading skeletons, empty search results, and error state UI [TASK-13]`
-  - **Scope**: Create skeleton loader components, empty welcome state on initial load, "No cities found" graphic, and network error banners with Retry actions.
-  - **Category**: Error handling / UI States
+- [x] **TASK-13**: Clean up application structure and shared logic
+  - **Commit Message**: `refactor: clean up application structure and shared logic [TASK-13]`
+  - **Scope**: Extract `formatLocationLabel` utility and custom hooks (`useCitySearch`, `useCityWeather`), centralize LocalStorage keys and custom event constants, and optimize CSS cascade.
+  - **Category**: Refactoring / Architecture
 
 - [ ] **TASK-14**: Implement responsive CSS layout and visual polish
   - **Commit Message**: `feat: implement responsive CSS layout, weather-themed color system, and visual polish [TASK-14]`
@@ -109,7 +109,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 | **TASK-10** | Celsius / Fahrenheit unit toggle    | Completed | Pending commit     | FR-05                       |
 | **TASK-11** | UI loading skeletons & error states | Completed | Pending commit     | FR-09, NFR-06               |
 | **TASK-12** | Responsive CSS styling & polish     | Completed | Pending commit     | NFR-02, NFR-03, NFR-04      |
-| **TASK-13** | UI loading skeletons & error states | Pending   | Pending commit     | FR-09, NFR-06               |
+| **TASK-13** | Code cleanup & architecture pass    | Completed | Pending commit     | NFR-05, NFR-06              |
 | **TASK-14** | Responsive CSS styling & polish     | Pending   | Pending commit     | NFR-02, NFR-03, NFR-04      |
 | **TASK-15** | Vitest unit and component tests     | Pending   | Pending commit     | DoD Requirement             |
 | **TASK-16** | GitHub Actions CI pipeline          | Pending   | Pending commit     | DoD Requirement             |

@@ -3,9 +3,9 @@ import {
   getWeatherBackgroundPath,
 } from '../utils/weatherCodes';
 import { formatTemperature } from '../utils/temperature';
+import { formatLocationLabel } from '../utils/formatLocation';
 import LoadingIndicator from './LoadingIndicator';
 import ErrorMessage from './ErrorMessage';
-import TemperatureUnitToggle from './TemperatureUnitToggle';
 
 function CurrentWeather({
   city,
@@ -15,15 +15,12 @@ function CurrentWeather({
   isFavorite,
   onToggleFavorite,
   unit = 'celsius',
-  onUnitChange,
 }) {
   if (!city) {
     return null;
   }
 
-  const locationName = [city.name, city.admin1, city.country]
-    .filter(Boolean)
-    .join(', ');
+  const locationName = formatLocationLabel(city);
 
   const currentTempFormatted = weather
     ? formatTemperature(weather.current.temperature, unit)
@@ -60,25 +57,20 @@ function CurrentWeather({
             <span className="location-badge">Selected Location</span>
             <h2>{locationName}</h2>
           </div>
-          <div className="weather-card-actions">
-            {onUnitChange && (
-              <TemperatureUnitToggle unit={unit} onUnitChange={onUnitChange} />
-            )}
-            {onToggleFavorite && (
-              <button
-                type="button"
-                onClick={onToggleFavorite}
-                className={`favorite-toggle-btn ${isFavorite ? 'is-favorite' : ''}`}
-                aria-label={
-                  isFavorite
-                    ? `Remove ${city.name} from favorites`
-                    : `Add ${city.name} to favorites`
-                }
-              >
-                {isFavorite ? '★ Remove from Favorites' : '☆ Add to Favorites'}
-              </button>
-            )}
-          </div>
+          {onToggleFavorite && (
+            <button
+              type="button"
+              onClick={onToggleFavorite}
+              className={`favorite-toggle-btn ${isFavorite ? 'is-favorite' : ''}`}
+              aria-label={
+                isFavorite
+                  ? `Remove ${city.name} from favorites`
+                  : `Add ${city.name} to favorites`
+              }
+            >
+              {isFavorite ? '★ Remove from Favorites' : '☆ Add to Favorites'}
+            </button>
+          )}
         </div>
       </header>
 

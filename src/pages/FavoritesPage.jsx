@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import EmptyState from '../components/EmptyState';
+import { formatLocationLabel } from '../utils/formatLocation';
+import { countryCodeToFlag } from '../utils/countryFlag';
 import {
   getFavoriteCities,
   removeFavoriteCity,
+  FAVORITES_UPDATED_EVENT,
 } from '../services/storageService';
 
 function FavoritesPage() {
@@ -16,13 +19,10 @@ function FavoritesPage() {
     };
 
     syncFavorites();
-    window.addEventListener('weatherwise_favorites_updated', syncFavorites);
+    window.addEventListener(FAVORITES_UPDATED_EVENT, syncFavorites);
 
     return () => {
-      window.removeEventListener(
-        'weatherwise_favorites_updated',
-        syncFavorites
-      );
+      window.removeEventListener(FAVORITES_UPDATED_EVENT, syncFavorites);
     };
   }, []);
 
@@ -49,9 +49,8 @@ function FavoritesPage() {
       ) : (
         <ul className="favorites-grid" aria-label="Favorite Cities List">
           {favorites.map((city) => {
-            const locationDetails = [city.admin1, city.country]
-              .filter(Boolean)
-              .join(', ');
+            const locationDetails = formatLocationLabel(city, false);
+            const flag = countryCodeToFlag(city.countryCode);
 
             return (
               <li key={city.id} className="favorite-card">
@@ -66,7 +65,12 @@ function FavoritesPage() {
                     }
                   }}
                 >
-                  <span className="favorite-city-name">{city.name}</span>
+                  <span className="favorite-city-name">
+                    <span className="country-flag" aria-hidden="true">
+                      {flag}
+                    </span>{' '}
+                    {city.name}
+                  </span>
                   {locationDetails && (
                     <span className="favorite-location-details">
                       {locationDetails}

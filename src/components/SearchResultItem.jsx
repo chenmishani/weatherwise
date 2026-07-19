@@ -1,11 +1,9 @@
 import { countryCodeToFlag } from '../utils/countryFlag';
+import { formatLocationLabel } from '../utils/formatLocation';
 import { isFavoriteCity } from '../services/storageService';
 
 function SearchResultItem({ city, onSelect, isHighlighted }) {
-  const locationDetails = [city.admin1, city.country]
-    .filter(Boolean)
-    .join(', ');
-
+  const locationDetails = formatLocationLabel(city, false);
   const flag = countryCodeToFlag(city.countryCode);
   const isFav = isFavoriteCity(city.id);
   const optionId = `city-option-${city.id}`;
