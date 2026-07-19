@@ -1,5 +1,7 @@
 import { getWeatherConditionText } from '../utils/weatherCodes';
 import { formatTemperature } from '../utils/temperature';
+import LoadingIndicator from './LoadingIndicator';
+import ErrorMessage from './ErrorMessage';
 
 function CurrentWeather({
   city,
@@ -52,15 +54,14 @@ function CurrentWeather({
 
       {isLoading && (
         <div className="weather-loading-state">
-          <p>Loading current weather...</p>
+          <LoadingIndicator
+            message="Retrieving weather forecast..."
+            size="medium"
+          />
         </div>
       )}
 
-      {!isLoading && error && (
-        <div className="weather-error-state">
-          <p>{error}</p>
-        </div>
-      )}
+      {!isLoading && error && <ErrorMessage message={error} type="weather" />}
 
       {!isLoading && !error && weather && (
         <div className="weather-details-body">

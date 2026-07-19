@@ -1,3 +1,5 @@
+import LoadingIndicator from './LoadingIndicator';
+
 function SearchBar({ query, onChange, onClear, isLoading }) {
   return (
     <div className="search-bar-container">
@@ -25,7 +27,9 @@ function SearchBar({ query, onChange, onClear, isLoading }) {
           </button>
         )}
       </div>
-      {isLoading && <p className="loading-indicator">Searching locations...</p>}
+      {isLoading && (
+        <LoadingIndicator message="Searching locations..." size="small" />
+      )}
     </div>
   );
 }

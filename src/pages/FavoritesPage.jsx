@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import EmptyState from '../components/EmptyState';
 import {
   getFavoriteCities,
   removeFavoriteCity,
@@ -40,14 +41,11 @@ function FavoritesPage() {
       <h1>Favorite Cities</h1>
 
       {favorites.length === 0 ? (
-        <div className="placeholder-panel">
-          <h2>No Favorite Cities Saved</h2>
-          <p>
-            You have no saved favorite locations. Search for a city on the Home
-            dashboard and click &ldquo;☆ Add to Favorites&rdquo; to bookmark it
-            here.
-          </p>
-        </div>
+        <EmptyState
+          icon="⭐"
+          title="No Favorite Cities Saved"
+          message="You have no saved favorite locations. Search for a city on the Home dashboard and click &ldquo;☆ Add to Favorites&rdquo; to bookmark it here."
+        />
       ) : (
         <ul className="favorites-grid" aria-label="Favorite Cities List">
           {favorites.map((city) => {

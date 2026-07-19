@@ -1,15 +1,19 @@
 import SearchResultItem from './SearchResultItem';
+import ErrorMessage from './ErrorMessage';
+import EmptyState from './EmptyState';
 
 function SearchResults({ results, onSelect, error, query }) {
   if (error) {
-    return <div className="search-error-message">{error}</div>;
+    return <ErrorMessage message={error} type="search" />;
   }
 
   if (query && results.length === 0) {
     return (
-      <div className="no-results-message">
-        No locations found matching &ldquo;{query}&rdquo;.
-      </div>
+      <EmptyState
+        icon="🔍"
+        title="No Locations Found"
+        message={`No matching cities found for "${query}". Please check spelling.`}
+      />
     );
   }
 

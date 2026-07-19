@@ -56,10 +56,10 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Create `temperature.js` and `TemperatureUnitToggle.jsx`, extend `storageService.js` with unit storage, and format all temperatures dynamically without extra API requests.
   - **Category**: Units
 
-- [ ] **TASK-11**: Implement favorite cities bookmarking system
-  - **Commit Message**: `feat: implement favorite cities bookmarking system [TASK-11]`
-  - **Scope**: Add star bookmark icon on weather view, sync with `LocalStorage`, and display quick-access favorites bar and dedicated route.
-  - **Category**: Favorites
+- [x] **TASK-11**: Improve loading states and user experience
+  - **Commit Message**: `feat: improve loading states and user experience [TASK-11]`
+  - **Scope**: Create `LoadingIndicator.jsx`, `ErrorMessage.jsx`, and `EmptyState.jsx` components; enhance loading spinner transitions, accessibility roles, and error banner consistency across the app.
+  - **Category**: UX / Polish
 
 - [ ] **TASK-12**: Implement recent search history tracking
   - **Commit Message**: `feat: implement recent search history tracking [TASK-12]`
@@ -107,7 +107,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 | **TASK-08** | Persist recent city searches        | Completed | Pending commit     | FR-07, NFR-05               |
 | **TASK-09** | Favorite cities & favorites page    | Completed | Pending commit     | FR-06                       |
 | **TASK-10** | Celsius / Fahrenheit unit toggle    | Completed | Pending commit     | FR-05                       |
-| **TASK-11** | Favorite cities bookmark system     | Pending   | Pending commit     | FR-06                       |
+| **TASK-11** | UI loading skeletons & error states | Completed | Pending commit     | FR-09, NFR-06               |
 | **TASK-12** | Recent searches history tracking    | Pending   | Pending commit     | FR-07                       |
 | **TASK-13** | UI loading skeletons & error states | Pending   | Pending commit     | FR-09, NFR-06               |
 | **TASK-14** | Responsive CSS styling & polish     | Pending   | Pending commit     | NFR-02, NFR-03, NFR-04      |
