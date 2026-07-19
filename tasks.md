@@ -11,7 +11,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Create `PRD.md`, `tasks.md`, and initial `README.md`.
   - **Category**: Documentation
 
-- [ ] **TASK-02**: Initialize React Vite project structure
+- [x] **TASK-02**: Initialize React Vite project structure
   - **Commit Message**: `chore: initialize React Vite project structure with ESLint and Prettier [TASK-02]`
   - **Scope**: Setup Vite React project, package dependencies, ESLint, Prettier, folder layout (`src/components`, `src/services`, `src/context`, `src/hooks`, `src/pages`, `src/styles`).
   - **Category**: Project initialization
@@ -95,22 +95,22 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 
 ## Traceability & Commit Mapping Matrix
 
-| Task ID | Task Description | Status | Target Commit Hash | Linked Requirements |
-|---|---|---|---|---|
-| **TASK-01** | Define product requirements & docs | Completed | Pending commit | N/A (Project Planning) |
-| **TASK-02** | Initialize React Vite project | Pending | Pending commit | N/A (Foundation) |
-| **TASK-03** | React Router & layout skeleton | Pending | Pending commit | FR-08, NFR-02 |
-| **TASK-04** | Open-Meteo API integration | Pending | Pending commit | FR-01, FR-03, FR-04, NFR-01 |
-| **TASK-05** | LocalStorage helper utilities | Pending | Pending commit | NFR-05 |
-| **TASK-06** | City search bar component | Pending | Pending commit | FR-01, NFR-03 |
-| **TASK-07** | Search results selection view | Pending | Pending commit | FR-02 |
-| **TASK-08** | Current weather card component | Pending | Pending commit | FR-03, NFR-02 |
-| **TASK-09** | 7-day forecast cards component | Pending | Pending commit | FR-04, NFR-02 |
-| **TASK-10** | Celsius / Fahrenheit unit toggle | Pending | Pending commit | FR-05 |
-| **TASK-11** | Favorite cities bookmark system | Pending | Pending commit | FR-06 |
-| **TASK-12** | Recent searches history tracking | Pending | Pending commit | FR-07 |
-| **TASK-13** | UI loading skeletons & error states | Pending | Pending commit | FR-09, NFR-06 |
-| **TASK-14** | Responsive CSS styling & polish | Pending | Pending commit | NFR-02, NFR-03, NFR-04 |
-| **TASK-15** | Vitest unit and component tests | Pending | Pending commit | DoD Requirement |
-| **TASK-16** | GitHub Actions CI pipeline | Pending | Pending commit | DoD Requirement |
-| **TASK-17** | Final README & documentation review | Pending | Pending commit | DoD Requirement |
+| Task ID     | Task Description                    | Status    | Target Commit Hash | Linked Requirements         |
+| ----------- | ----------------------------------- | --------- | ------------------ | --------------------------- |
+| **TASK-01** | Define product requirements & docs  | Completed | Pending commit     | N/A (Project Planning)      |
+| **TASK-02** | Initialize React Vite project       | Completed | Pending commit     | N/A (Foundation)            |
+| **TASK-03** | React Router & layout skeleton      | Pending   | Pending commit     | FR-08, NFR-02               |
+| **TASK-04** | Open-Meteo API integration          | Pending   | Pending commit     | FR-01, FR-03, FR-04, NFR-01 |
+| **TASK-05** | LocalStorage helper utilities       | Pending   | Pending commit     | NFR-05                      |
+| **TASK-06** | City search bar component           | Pending   | Pending commit     | FR-01, NFR-03               |
+| **TASK-07** | Search results selection view       | Pending   | Pending commit     | FR-02                       |
+| **TASK-08** | Current weather card component      | Pending   | Pending commit     | FR-03, NFR-02               |
+| **TASK-09** | 7-day forecast cards component      | Pending   | Pending commit     | FR-04, NFR-02               |
+| **TASK-10** | Celsius / Fahrenheit unit toggle    | Pending   | Pending commit     | FR-05                       |
+| **TASK-11** | Favorite cities bookmark system     | Pending   | Pending commit     | FR-06                       |
+| **TASK-12** | Recent searches history tracking    | Pending   | Pending commit     | FR-07                       |
+| **TASK-13** | UI loading skeletons & error states | Pending   | Pending commit     | FR-09, NFR-06               |
+| **TASK-14** | Responsive CSS styling & polish     | Pending   | Pending commit     | NFR-02, NFR-03, NFR-04      |
+| **TASK-15** | Vitest unit and component tests     | Pending   | Pending commit     | DoD Requirement             |
+| **TASK-16** | GitHub Actions CI pipeline          | Pending   | Pending commit     | DoD Requirement             |
+| **TASK-17** | Final README & documentation review | Pending   | Pending commit     | DoD Requirement             |

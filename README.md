@@ -8,7 +8,7 @@
 
 **WeatherWise** is a lightweight single-page web application that provides real-time weather metrics and a 7-day forecast for locations around the globe. Designed with a privacy-first approach, it relies entirely on client-side storage (`LocalStorage`) for user preferences such as favorite cities, search history, and temperature unit settings—requiring no user accounts, backend server, or tracking.
 
-> ⚠️ **Project Status**: Implementation has not started yet. Only initial documentation (`TASK-01`) has been created.
+> ⚠️ **Project Status**: Application foundation initialized (React + Vite + ESLint + Prettier). Feature implementation begins in TASK-03.
 
 ---
 
@@ -85,13 +85,15 @@ weatherwise/
 
 ## 🚀 Local Development Instructions
 
-> ⚠️ **Note**: Implementation has not started yet. Setup commands below represent the planned workflow starting in `TASK-02`.
+> ⚠️ **Note**: Application foundation has been initialized (TASK-02). You can run dev, build, lint, and format scripts as shown below.
 
 ### Prerequisites
+
 - [Node.js](https://nodejs.org/) (v18.0.0 or higher recommended)
 - `npm` (v9.0.0 or higher)
 
 ### Setup Steps (Pending TASK-02)
+
 ```bash
 # 1. Clone the repository
 git clone https://github.com/your-username/weatherwise.git
@@ -119,4 +121,5 @@ npm run test
 ---
 
 ## 📄 License
+
 Created for academic evaluation purposes as a University Final Project.

@@ -1,16 +1,19 @@
 # Product Requirements Document (PRD) — WeatherWise
 
 ## 1. Product Overview
+
 **WeatherWise** is a lightweight, responsive web application built with React and Vite that provides users with real-time weather information and a 7-day weather forecast for cities worldwide using the Open-Meteo APIs. WeatherWise offers a clean user interface with search history, favorite locations bookmarking, dynamic unit conversion (Celsius/Fahrenheit), and graceful error state handling—all without requiring user registration or backend infrastructure.
 
 ---
 
 ## 2. Problem Statement
+
 Many mainstream weather applications are cluttered with heavy advertisements, intrusive user tracking, complex maps, and unnecessary paywalls. Users seeking quick, reliable, and clean weather updates need a fast, responsive, and privacy-respecting application that saves their favorite locations locally and functions seamlessly across desktop and mobile devices.
 
 ---
 
 ## 3. Goals
+
 - Provide an intuitive, modern weather dashboard with zero layout shift during data loading.
 - Enable fast city search with support for handling multiple matching locations (e.g., distinguishing between Springfield, IL and Springfield, MA).
 - Deliver 7-day daily forecasts alongside detailed current weather metrics (temperature, apparent temperature, wind speed, relative humidity, weather conditions).
@@ -20,6 +23,7 @@ Many mainstream weather applications are cluttered with heavy advertisements, in
 ---
 
 ## 4. Target Users
+
 - **Daily Commuters & Travelers**: Need accurate weather forecasts and quick switching between saved locations.
 - **Students & General Users**: Seeking an ad-free, minimal, visually pleasing dashboard on desktop and mobile.
 - **Academic Evaluators**: Reviewing the project architecture, code quality, unit tests, and CI setup for a university final project.
@@ -27,6 +31,7 @@ Many mainstream weather applications are cluttered with heavy advertisements, in
 ---
 
 ## 5. User Flow
+
 1. **Landing / Home View**:
    - The user opens WeatherWise.
    - The application begins with an empty welcome state prompting the user to search for a city.
@@ -47,6 +52,7 @@ Many mainstream weather applications are cluttered with heavy advertisements, in
 ---
 
 ## 6. Scope
+
 - Responsive single-page web application (React + Vite + React Router + CSS).
 - Open-Meteo Geocoding API for city search.
 - Open-Meteo Forecast API for weather metrics.
@@ -61,6 +67,7 @@ Many mainstream weather applications are cluttered with heavy advertisements, in
 ---
 
 ## 7. Out of Scope
+
 - User authentication, login, or user account management.
 - Backend server or database (SQLite, PostgreSQL, Firebase, etc.).
 - Interactive maps (Leaflet, Mapbox, Google Maps).
@@ -72,34 +79,35 @@ Many mainstream weather applications are cluttered with heavy advertisements, in
 
 ## 8. Functional Requirements
 
-| ID | Feature | Description | Priority |
-|---|---|---|---|
-| **FR-01** | City Search | Users can enter a city name into a search bar to search for locations via Open-Meteo Geocoding API. | High |
-| **FR-02** | Search Results Selection | When multiple search results match a query, display a list showing city name, administrative region/state, and country for explicit selection. | High |
-| **FR-03** | Current Weather Display | Display current temperature, apparent temperature, humidity, wind speed, weather code description, and icon. | High |
-| **FR-04** | 7-Day Forecast | Display a 7-day forecast including daily high/low temperatures, day of the week, and weather condition icon. | High |
-| **FR-05** | Temperature Unit Toggle | Global toggle allowing users to switch between Celsius (°C) and Fahrenheit (°F) across all current and forecast views. | Medium |
-| **FR-06** | Favorites System | Users can bookmark/un-bookmark cities as favorites. Saved cities persist in `LocalStorage` and appear in a quick-access menu. | Medium |
-| **FR-07** | Recent Searches | Automatically track the last 5 searched locations in `LocalStorage` for quick re-selection. | Medium |
-| **FR-08** | Navigation / Routing | Use `React Router` to navigate between Main Dashboard (`/`), Favorites View (`/favorites`), and Not Found (`*`). | Medium |
-| **FR-09** | State Feedback | Show loading skeletons while fetching API data, empty welcome state on initial load, empty state graphics when search returns 0 results, and user-friendly error messages on API failure. | High |
+| ID        | Feature                  | Description                                                                                                                                                                               | Priority |
+| --------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| **FR-01** | City Search              | Users can enter a city name into a search bar to search for locations via Open-Meteo Geocoding API.                                                                                       | High     |
+| **FR-02** | Search Results Selection | When multiple search results match a query, display a list showing city name, administrative region/state, and country for explicit selection.                                            | High     |
+| **FR-03** | Current Weather Display  | Display current temperature, apparent temperature, humidity, wind speed, weather code description, and icon.                                                                              | High     |
+| **FR-04** | 7-Day Forecast           | Display a 7-day forecast including daily high/low temperatures, day of the week, and weather condition icon.                                                                              | High     |
+| **FR-05** | Temperature Unit Toggle  | Global toggle allowing users to switch between Celsius (°C) and Fahrenheit (°F) across all current and forecast views.                                                                    | Medium   |
+| **FR-06** | Favorites System         | Users can bookmark/un-bookmark cities as favorites. Saved cities persist in `LocalStorage` and appear in a quick-access menu.                                                             | Medium   |
+| **FR-07** | Recent Searches          | Automatically track the last 5 searched locations in `LocalStorage` for quick re-selection.                                                                                               | Medium   |
+| **FR-08** | Navigation / Routing     | Use `React Router` to navigate between Main Dashboard (`/`), Favorites View (`/favorites`), and Not Found (`*`).                                                                          | Medium   |
+| **FR-09** | State Feedback           | Show loading skeletons while fetching API data, empty welcome state on initial load, empty state graphics when search returns 0 results, and user-friendly error messages on API failure. | High     |
 
 ---
 
 ## 9. Non-Functional Requirements
 
-| ID | Category | Requirement |
-|---|---|---|
-| **NFR-01** | Performance | The UI remains responsive and provides immediate loading feedback (e.g., skeletons/spinners) during async requests. Initial page render time under 1 second. |
-| **NFR-02** | Responsiveness | Fluid layout supporting breakpoints for Mobile (<600px), Tablet (600px–1024px), and Desktop (>1024px). |
-| **NFR-03** | Usability | Clear typography, high contrast colors, accessible ARIA roles on buttons/inputs, keyboard navigation support. |
-| **NFR-04** | Maintainability | Modular component structure, separated service utilities (`src/services/geocodingService.js`, `src/services/weatherService.js`, `src/services/storageService.js`), clean CSS styling without external UI frameworks. |
-| **NFR-05** | Persistence Safety | Safe `LocalStorage` read/write handlers with JSON parsing try/catch blocks and fallback to empty defaults. |
-| **NFR-06** | Reliability | Graceful handling of failed API requests, missing or malformed API data, and corrupted LocalStorage values without crashing the visible application. |
+| ID         | Category           | Requirement                                                                                                                                                                                                          |
+| ---------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **NFR-01** | Performance        | The UI remains responsive and provides immediate loading feedback (e.g., skeletons/spinners) during async requests. Initial page render time under 1 second.                                                         |
+| **NFR-02** | Responsiveness     | Fluid layout supporting breakpoints for Mobile (<600px), Tablet (600px–1024px), and Desktop (>1024px).                                                                                                               |
+| **NFR-03** | Usability          | Clear typography, high contrast colors, accessible ARIA roles on buttons/inputs, keyboard navigation support.                                                                                                        |
+| **NFR-04** | Maintainability    | Modular component structure, separated service utilities (`src/services/geocodingService.js`, `src/services/weatherService.js`, `src/services/storageService.js`), clean CSS styling without external UI frameworks. |
+| **NFR-05** | Persistence Safety | Safe `LocalStorage` read/write handlers with JSON parsing try/catch blocks and fallback to empty defaults.                                                                                                           |
+| **NFR-06** | Reliability        | Graceful handling of failed API requests, missing or malformed API data, and corrupted LocalStorage values without crashing the visible application.                                                                 |
 
 ---
 
 ## 10. Technical Stack
+
 - **Framework**: React 18+
 - **Build Tool**: Vite
 - **Language**: JavaScript (ES6+)
@@ -120,6 +128,7 @@ Many mainstream weather applications are cluttered with heavy advertisements, in
 ## 11. APIs Used
 
 ### 11.1 Open-Meteo Geocoding API
+
 - **Endpoint**: `https://geocoding-api.open-meteo.com/v1/search`
 - **Method**: `GET`
 - **QueryParams**:
@@ -131,6 +140,7 @@ Many mainstream weather applications are cluttered with heavy advertisements, in
   `GET https://geocoding-api.open-meteo.com/v1/search?name=London&count=5&language=en&format=json`
 
 ### 11.2 Open-Meteo Weather Forecast API
+
 - **Endpoint**: `https://api.open-meteo.com/v1/forecast`
 - **Method**: `GET`
 - **QueryParams**:
@@ -148,6 +158,7 @@ Many mainstream weather applications are cluttered with heavy advertisements, in
 ## 12. Main Data Models
 
 ### City Location Model
+
 ```json
 {
   "id": 2643743,
@@ -161,6 +172,7 @@ Many mainstream weather applications are cluttered with heavy advertisements, in
 ```
 
 ### Weather Data Model
+
 ```json
 {
   "current": {
@@ -190,15 +202,16 @@ Many mainstream weather applications are cluttered with heavy advertisements, in
 
 ## 13. LocalStorage Strategy
 
-| Key | Description | Data Structure | Fallback |
-|---|---|---|---|
-| `weatherwise_favorites` | Saved favorite cities | Array of `City` objects | `[]` |
-| `weatherwise_recents` | Last 5 searched cities | Array of `City` objects | `[]` |
-| `weatherwise_unit` | Preferred temperature unit | String (`"celsius"` \| `"fahrenheit"`) | `"celsius"` |
+| Key                     | Description                | Data Structure                         | Fallback    |
+| ----------------------- | -------------------------- | -------------------------------------- | ----------- |
+| `weatherwise_favorites` | Saved favorite cities      | Array of `City` objects                | `[]`        |
+| `weatherwise_recents`   | Last 5 searched cities     | Array of `City` objects                | `[]`        |
+| `weatherwise_unit`      | Preferred temperature unit | String (`"celsius"` \| `"fahrenheit"`) | `"celsius"` |
 
 ---
 
 ## 14. Error Handling
+
 1. **Failed API Requests / Offline**: Display user-friendly error card or offline banner notifying the user to check their network connection, with a "Retry" button.
 2. **Missing or Malformed API Data**: Service layer validates API response fields, providing default fallbacks without crashing the visible application.
 3. **Corrupted LocalStorage Values**: Utility in `src/services/storageService.js` wraps JSON parsing in try/catch blocks, resetting corrupted items to safe fallbacks (`[]` or default unit) without crashing the application.
@@ -207,6 +220,7 @@ Many mainstream weather applications are cluttered with heavy advertisements, in
 ---
 
 ## 15. Definition of Done (DoD)
+
 - All Functional Requirements (FR-01 to FR-09) and Non-Functional Requirements are implemented.
 - Application passes all Vitest unit and component tests.
 - Zero ESLint warnings/errors.
