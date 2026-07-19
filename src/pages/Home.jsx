@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import SearchBar from '../components/SearchBar';
 import SearchResults from '../components/SearchResults';
 import CurrentWeather from '../components/CurrentWeather';
+import Forecast from '../components/Forecast';
 import { useDebounce } from '../hooks/useDebounce';
 import { searchCities } from '../services/geocodingService';
 import { getWeatherByCoordinates } from '../services/weatherService';
@@ -148,6 +149,12 @@ function Home() {
       <CurrentWeather
         city={selectedCity}
         weather={weatherData}
+        isLoading={weatherIsLoading}
+        error={weatherError}
+      />
+      <Forecast
+        daily={weatherData?.daily}
+        unit={weatherData?.units?.temperature || '°C'}
         isLoading={weatherIsLoading}
         error={weatherError}
       />

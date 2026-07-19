@@ -36,10 +36,10 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Create `CurrentWeather.jsx` component and `weatherCodes.js` utility; integrate `getWeatherByCoordinates` with state separation and AbortController request protection.
   - **Category**: Current weather
 
-- [ ] **TASK-07**: Implement multiple search results selection view
-  - **Commit Message**: `feat: implement multiple search results selection view [TASK-07]`
-  - **Scope**: Create `SearchResults.jsx` to list matching cities (showing city, state/region, country) and handle location selection.
-  - **Category**: City search
+- [x] **TASK-07**: Display seven-day weather forecast
+  - **Commit Message**: `feat: display seven-day weather forecast [TASK-07]`
+  - **Scope**: Create `Forecast.jsx` and `ForecastDay.jsx` components and `formatDate.js` utility reusing `weatherData.daily` response.
+  - **Category**: Forecast
 
 - [ ] **TASK-08**: Create current weather display card component
   - **Commit Message**: `feat: create current weather display card component [TASK-08]`
@@ -103,7 +103,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 | **TASK-04** | Open-Meteo API integration          | Completed | Pending commit     | FR-01, FR-03, FR-04, NFR-01 |
 | **TASK-05** | City search & selection flow        | Completed | Pending commit     | FR-01, FR-02                |
 | **TASK-06** | Fetch & display current weather     | Completed | Pending commit     | FR-03, NFR-01, NFR-06       |
-| **TASK-07** | Search results selection view       | Pending   | Pending commit     | FR-02                       |
+| **TASK-07** | Display 7-day weather forecast      | Completed | Pending commit     | FR-04, NFR-02               |
 | **TASK-08** | Current weather card component      | Pending   | Pending commit     | FR-03, NFR-02               |
 | **TASK-09** | 7-day forecast cards component      | Pending   | Pending commit     | FR-04, NFR-02               |
 | **TASK-10** | Celsius / Fahrenheit unit toggle    | Pending   | Pending commit     | FR-05                       |
