@@ -46,10 +46,10 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Create `storageService.js` and `RecentSearches.jsx` to persist and display up to 5 recently selected cities using LocalStorage.
   - **Category**: Recent searches
 
-- [ ] **TASK-09**: Build 7-day forecast cards component
-  - **Commit Message**: `feat: build 7-day forecast cards component [TASK-09]`
-  - **Scope**: Create `ForecastList.jsx` and `ForecastCard.jsx` displaying daily weather icons, weekday names, and max/min temperatures.
-  - **Category**: Forecast
+- [x] **TASK-09**: Implement favorite cities and favorites page
+  - **Commit Message**: `feat: implement favorite cities and favorites page [TASK-09]`
+  - **Scope**: Extend `storageService.js` with favorite cities helpers, activate `FavoritesPage.jsx`, add favorite toggle button in `CurrentWeather.jsx`, and link navigation to Home dashboard.
+  - **Category**: Favorites
 
 - [ ] **TASK-10**: Implement temperature unit toggle (°C / °F)
   - **Commit Message**: `feat: implement temperature unit toggle (Celsius/Fahrenheit) [TASK-10]`
@@ -105,7 +105,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 | **TASK-06** | Fetch & display current weather     | Completed | Pending commit     | FR-03, NFR-01, NFR-06       |
 | **TASK-07** | Display 7-day weather forecast      | Completed | Pending commit     | FR-04, NFR-02               |
 | **TASK-08** | Persist recent city searches        | Completed | Pending commit     | FR-07, NFR-05               |
-| **TASK-09** | 7-day forecast cards component      | Pending   | Pending commit     | FR-04, NFR-02               |
+| **TASK-09** | Favorite cities & favorites page    | Completed | Pending commit     | FR-06                       |
 | **TASK-10** | Celsius / Fahrenheit unit toggle    | Pending   | Pending commit     | FR-05                       |
 | **TASK-11** | Favorite cities bookmark system     | Pending   | Pending commit     | FR-06                       |
 | **TASK-12** | Recent searches history tracking    | Pending   | Pending commit     | FR-07                       |

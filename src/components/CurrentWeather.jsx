@@ -1,6 +1,13 @@
 import { getWeatherConditionText } from '../utils/weatherCodes';
 
-function CurrentWeather({ city, weather, isLoading, error }) {
+function CurrentWeather({
+  city,
+  weather,
+  isLoading,
+  error,
+  isFavorite,
+  onToggleFavorite,
+}) {
   if (!city) {
     return null;
   }
@@ -12,8 +19,26 @@ function CurrentWeather({ city, weather, isLoading, error }) {
   return (
     <section className="current-weather-card" aria-label="Current Weather">
       <header className="current-weather-header">
-        <span className="location-badge">Selected Location</span>
-        <h2>{locationName}</h2>
+        <div className="location-header-row">
+          <div>
+            <span className="location-badge">Selected Location</span>
+            <h2>{locationName}</h2>
+          </div>
+          {onToggleFavorite && (
+            <button
+              type="button"
+              onClick={onToggleFavorite}
+              className={`favorite-toggle-btn ${isFavorite ? 'is-favorite' : ''}`}
+              aria-label={
+                isFavorite
+                  ? `Remove ${city.name} from favorites`
+                  : `Add ${city.name} to favorites`
+              }
+            >
+              {isFavorite ? '★ Remove from Favorites' : '☆ Add to Favorites'}
+            </button>
+          )}
+        </div>
       </header>
 
       {isLoading && (

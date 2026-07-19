@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import SearchResults from '../components/SearchResults';
 import RecentSearches from '../components/RecentSearches';
@@ -11,9 +12,14 @@ import {
   getRecentSearches,
   saveRecentSearch,
   clearRecentSearches,
+  isFavoriteCity,
+  saveFavoriteCity,
+  removeFavoriteCity,
 } from '../services/storageService';
 
 function Home() {
+  const location = useLocation();
+
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [selectedCity, setSelectedCity] = useState(null);
@@ -21,6 +27,7 @@ function Home() {
   const [searchError, setSearchError] = useState(null);
 
   const [recentSearches, setRecentSearches] = useState([]);
+  const [isFav, setIsFav] = useState(false);
 
   const [weatherData, setWeatherData] = useState(null);
   const [weatherIsLoading, setWeatherIsLoading] = useState(false);
@@ -29,10 +36,40 @@ function Home() {
   const debouncedQuery = useDebounce(query, 300);
   const lastFetchedQueryRef = useRef('');
 
+  // Handle navigation from FavoritesPage
+  useEffect(() => {
+    if (location.state?.selectedCity) {
+      const city = location.state.selectedCity;
+      setSelectedCity(city);
+      const updatedRecents = saveRecentSearch(city);
+      setRecentSearches(updatedRecents);
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
+
   // Initial load for recent searches
   useEffect(() => {
     setRecentSearches(getRecentSearches());
   }, []);
+
+  // Favorite status sync effect for selectedCity
+  useEffect(() => {
+    if (!selectedCity) {
+      setIsFav(false);
+      return;
+    }
+
+    const syncFav = () => {
+      setIsFav(isFavoriteCity(selectedCity.id));
+    };
+
+    syncFav();
+    window.addEventListener('weatherwise_favorites_updated', syncFav);
+
+    return () => {
+      window.removeEventListener('weatherwise_favorites_updated', syncFav);
+    };
+  }, [selectedCity]);
 
   // Search effect
   useEffect(() => {
@@ -145,6 +182,15 @@ function Home() {
     setRecentSearches(cleared);
   };
 
+  const handleToggleFavorite = () => {
+    if (!selectedCity) return;
+    if (isFav) {
+      removeFavoriteCity(selectedCity.id);
+    } else {
+      saveFavoriteCity(selectedCity);
+    }
+  };
+
   return (
     <div className="page-container">
       <h1>WeatherWise Dashboard</h1>
@@ -178,6 +224,8 @@ function Home() {
         weather={weatherData}
         isLoading={weatherIsLoading}
         error={weatherError}
+        isFavorite={isFav}
+        onToggleFavorite={handleToggleFavorite}
       />
       <Forecast
         daily={weatherData?.daily}
