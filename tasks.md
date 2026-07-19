@@ -41,10 +41,10 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
   - **Scope**: Create `Forecast.jsx` and `ForecastDay.jsx` components and `formatDate.js` utility reusing `weatherData.daily` response.
   - **Category**: Forecast
 
-- [ ] **TASK-08**: Create current weather display card component
-  - **Commit Message**: `feat: create current weather display card component [TASK-08]`
-  - **Scope**: Build `CurrentWeather.jsx` rendering temperature, feels like, humidity, wind speed, weather code icons, and condition text.
-  - **Category**: Current weather
+- [x] **TASK-08**: Persist and display recent city searches
+  - **Commit Message**: `feat: persist and display recent city searches [TASK-08]`
+  - **Scope**: Create `storageService.js` and `RecentSearches.jsx` to persist and display up to 5 recently selected cities using LocalStorage.
+  - **Category**: Recent searches
 
 - [ ] **TASK-09**: Build 7-day forecast cards component
   - **Commit Message**: `feat: build 7-day forecast cards component [TASK-09]`
@@ -104,7 +104,7 @@ This document tracks all step-by-step tasks required to implement the WeatherWis
 | **TASK-05** | City search & selection flow        | Completed | Pending commit     | FR-01, FR-02                |
 | **TASK-06** | Fetch & display current weather     | Completed | Pending commit     | FR-03, NFR-01, NFR-06       |
 | **TASK-07** | Display 7-day weather forecast      | Completed | Pending commit     | FR-04, NFR-02               |
-| **TASK-08** | Current weather card component      | Pending   | Pending commit     | FR-03, NFR-02               |
+| **TASK-08** | Persist recent city searches        | Completed | Pending commit     | FR-07, NFR-05               |
 | **TASK-09** | 7-day forecast cards component      | Pending   | Pending commit     | FR-04, NFR-02               |
 | **TASK-10** | Celsius / Fahrenheit unit toggle    | Pending   | Pending commit     | FR-05                       |
 | **TASK-11** | Favorite cities bookmark system     | Pending   | Pending commit     | FR-06                       |

@@ -1,11 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import SearchBar from '../components/SearchBar';
 import SearchResults from '../components/SearchResults';
+import RecentSearches from '../components/RecentSearches';
 import CurrentWeather from '../components/CurrentWeather';
 import Forecast from '../components/Forecast';
 import { useDebounce } from '../hooks/useDebounce';
 import { searchCities } from '../services/geocodingService';
 import { getWeatherByCoordinates } from '../services/weatherService';
+import {
+  getRecentSearches,
+  saveRecentSearch,
+  clearRecentSearches,
+} from '../services/storageService';
 
 function Home() {
   const [query, setQuery] = useState('');
@@ -14,12 +20,19 @@ function Home() {
   const [searchIsLoading, setSearchIsLoading] = useState(false);
   const [searchError, setSearchError] = useState(null);
 
+  const [recentSearches, setRecentSearches] = useState([]);
+
   const [weatherData, setWeatherData] = useState(null);
   const [weatherIsLoading, setWeatherIsLoading] = useState(false);
   const [weatherError, setWeatherError] = useState(null);
 
   const debouncedQuery = useDebounce(query, 300);
   const lastFetchedQueryRef = useRef('');
+
+  // Initial load for recent searches
+  useEffect(() => {
+    setRecentSearches(getRecentSearches());
+  }, []);
 
   // Search effect
   useEffect(() => {
@@ -122,6 +135,14 @@ function Home() {
     setResults([]);
     setSearchError(null);
     lastFetchedQueryRef.current = '';
+
+    const updatedRecents = saveRecentSearch(city);
+    setRecentSearches(updatedRecents);
+  };
+
+  const handleClearRecents = () => {
+    const cleared = clearRecentSearches();
+    setRecentSearches(cleared);
   };
 
   return (
@@ -145,6 +166,12 @@ function Home() {
           query={debouncedQuery.trim()}
         />
       </section>
+
+      <RecentSearches
+        searches={recentSearches}
+        onSelectCity={handleSelectCity}
+        onClearRecents={handleClearRecents}
+      />
 
       <CurrentWeather
         city={selectedCity}

@@ -276,6 +276,71 @@ body {
   font-size: 0.9rem;
 }
 
+/* Recent Searches Styles */
+.recent-searches-section {
+  margin-top: 1rem;
+  max-width: 600px;
+  width: 100%;
+}
+
+.recent-searches-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.recent-searches-header h2 {
+  font-size: 1rem;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.clear-recents-btn {
+  background: none;
+  border: none;
+  color: #718096;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.clear-recents-btn:hover {
+  color: #c53030;
+}
+
+.recent-searches-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.recent-city-chip {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.recent-city-chip:hover,
+.recent-city-chip:focus {
+  background-color: #e0e7ff;
+  border-color: var(--primary-color);
+  outline: none;
+  transform: translateY(-1px);
+}
+
 /* Current Weather Styles */
 .current-weather-card {
   margin-top: 1.5rem;
